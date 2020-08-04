@@ -1,0 +1,16 @@
+@media (max-width: 768px) {
+
+    [class*="col-"] {
+        margin-bottom: 15px;
+    }
+
+}
+
+.navbar-brand img {
+    width: 50px;
+}
+.card-header-img {
+    width:35px;
+    height:35px;
+}
+$primary: #000000 !default;
