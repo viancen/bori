@@ -1975,6 +1975,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -37575,121 +37584,151 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "card text-white bg-dark" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("Over Bori")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "p",
+              [
+                _vm._v(
+                  " Bori is a Take out service based in Amsterdam!!\n                        "
+                ),
+                _c("Br"),
+                _vm._v(" "),
+                _c("Br"),
+                _vm._v(
+                  "\n                        interdum tellus dapibus non. Fusce sit amet lacus in velit venenatis finibus in id ligula.\n                        Mauris ex diam, tristique et rhoncus vel, hendrerit eget mauris. Etiam facilisis rutrum\n                        nulla, vitae accumsan magna aliquam et. Donec ac risus eu sem dictum tempus."
+                )
+              ],
+              1
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card bg-light" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("T-shirt bestellen")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "p",
+              [
+                _vm._v(
+                  " Get your original t-shirt for only € 29,50\n                        "
+                ),
+                _c("Br"),
+                _vm._v(" "),
+                _c("Br"),
+                _vm._v(
+                  "\n                        interdum tellus dapibus non. Fusce sit amet lacus in velit venenatis finibus in id ligula.\n                        Mauris ex diam, tristique et rhoncus vel, hendrerit eget mauris. Etiam facilisis rutrum\n                        nulla,\n                        vitae accumsan magna aliquam et. Donec ac risus eu sem dictum tempus."
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("img", { attrs: { src: "/images/patta-example.jpeg" } })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "card text-white bg-dark " }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Get your T-shirt!")
-            ]),
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "card flat-border border-dark" }, [
+        _c(
+          "div",
+          { staticClass: "card-header flat-border bg-dark text-white" },
+          [
+            _c("img", {
+              staticClass: "card-header-img",
+              attrs: { src: "/images/bori-white.svg" }
+            }),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("p", [
-                _vm._v(
-                  " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices libero tellus,\n                        suscipit\n                        interdum tellus dapibus non. Fusce sit amet lacus in velit venenatis finibus in id ligula.\n                        Mauris ex diam, tristique et rhoncus vel, hendrerit eget mauris. Etiam facilisis rutrum\n                        nulla,\n                        vitae accumsan magna aliquam et. Donec ac risus eu sem dictum tempus."
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Vivamus vulputate\n                        ullamcorper lectus, ac fringilla nibh varius id. Mauris gravida, erat nec iaculis\n                        pellentesque,\n                        quam leo finibus ipsum, vel ornare ipsum velit et nunc. Ut condimentum augue et tincidunt\n                        maximus. Nam ex ipsum, fringilla eget enim eget, venenatis facilisis metus. Proin congue\n                        quam\n                        eget dignissim placerat. Proin vestibulum libero nulla, non cursus arcu tincidunt\n                         placerat. Proin vestibulum libero nulla, non cursus arcu tincidunt\n                        feugiat."
-                )
-              ])
-            ])
-          ])
-        ]),
+            _c("strong", [_vm._v("Menu today")])
+          ]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header bg-dark text-white" }, [
-              _c("img", {
-                staticClass: "card-header-img",
-                attrs: { src: "/images/bori-white.svg" }
+        _c("div", { staticClass: "card-body" }, [
+          _c("p", [
+            _vm._v(
+              "Praesent vitae ipsum sed nibh convallis vulputate aliquet a erat."
+            )
+          ]),
+          _vm._v(" "),
+          _c("ul", [
+            _c("li", [_vm._v("cassave soep (vega)")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("kip (zoutvlees)")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("€ 12,- per liter")])
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("form", [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+                _vm._v("Email address")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "email",
+                  id: "exampleInputEmail1",
+                  "aria-describedby": "emailHelp",
+                  placeholder: "Enter email"
+                }
               }),
-              _vm._v(" Menu today")
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "form-text text-muted",
+                  attrs: { id: "emailHelp" }
+                },
+                [
+                  _vm._v(
+                    "We'll never share your email with\n                                anyone else."
+                  )
+                ]
+              )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("p", [
-                _vm._v(
-                  "Praesent vitae ipsum sed nibh convallis vulputate aliquet a erat."
-                )
-              ]),
+            _c("div", { staticClass: "form-check" }, [
+              _c("input", {
+                staticClass: "form-check-input",
+                attrs: { type: "checkbox", id: "exampleCheck1" }
+              }),
               _vm._v(" "),
-              _c("ul", [
-                _c("li", [_vm._v("cassave soep (vega)")]),
-                _vm._v(" "),
-                _c("li", [_vm._v("kip (zoutvlees)")]),
-                _vm._v(" "),
-                _c("li", [_vm._v("€ 12,- per liter")])
-              ]),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c("form", [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "exampleInputEmail1" } }, [
-                    _vm._v("Email address")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "email",
-                      id: "exampleInputEmail1",
-                      "aria-describedby": "emailHelp",
-                      placeholder: "Enter email"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "small",
-                    {
-                      staticClass: "form-text text-muted",
-                      attrs: { id: "emailHelp" }
-                    },
-                    [
-                      _vm._v(
-                        "We'll never share your email with\n                                anyone else."
-                      )
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-check" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: { type: "checkbox", id: "exampleCheck1" }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "form-check-label",
-                      attrs: { for: "exampleCheck1" }
-                    },
-                    [_vm._v("Check me out")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "text-right" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary ",
-                      attrs: { type: "submit" }
-                    },
-                    [_vm._v("Submit")]
-                  )
-                ])
-              ])
+              _c(
+                "label",
+                {
+                  staticClass: "form-check-label",
+                  attrs: { for: "exampleCheck1" }
+                },
+                [_vm._v("Check me out")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-right" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-primary ", attrs: { type: "submit" } },
+                [_vm._v("Submit")]
+              )
             ])
           ])
         ])

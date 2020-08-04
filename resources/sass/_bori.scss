@@ -1,11 +1,16 @@
-@media (max-width: 768px) {
-
-    [class*="col-"] {
-        margin-bottom: 15px;
-    }
+.flat-border {
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;;
+}
+.card {
+    margin-bottom: 15px;
+}
+.card-body img {
+    width: 100%;
+    position: relative;
 
 }
-
 .navbar-brand img {
     width: 50px;
 }
@@ -13,4 +18,5 @@
     width:35px;
     height:35px;
 }
+
 $primary: #000000 !default;
