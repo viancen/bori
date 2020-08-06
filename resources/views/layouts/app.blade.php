@@ -19,6 +19,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <link href="{{asset('fonts/fa/css/all.min.css')}}" rel="stylesheet">
+
     <link rel="icon" href="/images/favicon.svg">
 
 

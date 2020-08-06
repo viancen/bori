@@ -24,10 +24,6 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.14.0",
-        "@fortawesome/fontawesome-svg-core": "^1.2.30",
-        "@fortawesome/free-solid-svg-icons": "^5.14.0",
-        "@fortawesome/vue-fontawesome": "^0.1.10",
         "moment": "^2.27.0",
         "vform": "^1.0.1",
         "vue-progressbar": "^0.7.5",
