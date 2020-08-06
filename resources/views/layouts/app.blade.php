@@ -9,6 +9,7 @@
 
     <title>Bori . (H)eerlijk vers . Amsterdam</title>
 
+    <meta name="description" content="Take out service based in Amsterdam!! 🇳🇱">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -30,7 +31,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="/images/bori.svg" />
+                <img src="/images/bori.svg"/>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -76,14 +77,15 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="fas fa-fw fa-user-circle"></i>     {{ Auth::user()->name }} <span class="caret"></span>
+                                <i class="fas fa-fw fa-user-circle"></i> {{ Auth::user()->name }} <span
+                                    class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    <i class="fas fa-fw fa-sign-out-alt"></i>      {{ __('Uitloggen') }}
+                                    <i class="fas fa-fw fa-sign-out-alt"></i> {{ __('Uitloggen') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
