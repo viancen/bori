@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Bori | (H)eerlijk vers | Amsterdam</title>
+    <title>Bori . (H)eerlijk vers . Amsterdam</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -39,33 +39,49 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-fw fa-cloud-meatball"></i>
+                            Chefs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-fw fa-utensils"></i>
+                            Gerechten</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+
+                            <a class="nav-link" href="{{ route('login') }}">
+                                <i class="fas fa-fw fa-sign-in-alt"></i>
+                                {{ __('Inloggen') }}</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">
+                                    <i class="fas fa-fw fa-user-edit"></i>
+                                    {{ __('Registreren') }}</a>
                             </li>
                         @endif
+
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                <i class="fas fa-fw fa-user-circle"></i>     {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    <i class="fas fa-fw fa-sign-out-alt"></i>      {{ __('Uitloggen') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -75,6 +91,16 @@
                             </div>
                         </li>
                     @endguest
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://instagram.com/bori.amsterdam" target="_blank">
+                            <i class="fab fa-fw fa-instagram"></i> Instagram
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.facebook.com/Boriamsterdam" target="_blank">
+                            <i class="fab fa-fw fa-facebook"></i> Facebook
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

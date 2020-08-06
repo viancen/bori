@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/login/insta','Auth\LoginController@redirectToInsta');
+Route::get('/login/insta/callback', 'Auth\LoginController@handleInstaCallback');
+
+Route::get('/login/facebook', 'Auth\LoginController@redirectToFacebook');
+Route::get('/login/facebook/callback', 'Auth\LoginController@handleFacebookCallback');

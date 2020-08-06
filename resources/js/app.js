@@ -6,7 +6,12 @@
 
 require('./bootstrap');
 
+//--init vue
 window.Vue = require('vue');
+
+//font awesome
+import '@fortawesome/fontawesome-free/css/all.css'
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,6 +25,10 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('main-component', require('./components/MainComponent.vue').default);
+Vue.component('chefs-component', require('./components/ChefsComponent.vue').default);
+Vue.component('menu-component', require('./components/MenuComponent.vue').default);
+Vue.component('about-component', require('./components/AboutComponent.vue').default);
+Vue.component('tshirt-component', require('./components/TshirtComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
