@@ -52,6 +52,11 @@
                             <i class="fas fa-fw fa-utensils"></i>
                             Gerechten</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">
+                            <i class="fas fa-fw fa-signature"></i>
+                            Over Bori</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -97,12 +102,12 @@
                     @endguest
                     <li class="nav-item">
                         <a class="nav-link" href="https://instagram.com/bori.amsterdam" target="_blank">
-                            <i class="fab fa-fw fa-instagram"></i> Instagram
+                            <i class="fab fa-fw fa-instagram"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://www.facebook.com/Boriamsterdam" target="_blank">
-                            <i class="fab fa-fw fa-facebook"></i> Facebook
+                            <i class="fab fa-fw fa-facebook"></i>
                         </a>
                     </li>
                 </ul>

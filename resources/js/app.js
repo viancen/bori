@@ -28,6 +28,8 @@ Vue.component('menu-component', require('./components/MenuComponent.vue').defaul
 Vue.component('about-component', require('./components/AboutComponent.vue').default);
 Vue.component('tshirt-component', require('./components/TshirtComponent.vue').default);
 
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

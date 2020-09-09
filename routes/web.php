@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
 Auth::routes();
 
 Route::get('/login/insta','Auth\LoginController@redirectToInsta');
