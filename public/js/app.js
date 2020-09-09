@@ -2082,6 +2082,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2196,6 +2197,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -38040,14 +38045,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-6" }, [_c("about-widget")], 1),
-      _vm._v(" "),
       _c(
         "div",
         { staticClass: "col-md-6" },
         [_c("menu-component"), _vm._v(" "), _c("chefs-component")],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [_c("about-widget")], 1)
     ])
   ])
 }
@@ -38268,9 +38273,12 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
-          _vm._v(
-            "\n\n            Dagelijks bieden chefs op Bori.nl hun specials aan. Deze worden moeten vooraf worden besteld zodat de\n            chef precies weet hoeveel inkopen hij of zij moet doen en de klant altijd gegarandeerd is van een\n            dagverse maaltijd. Maar let op! Omdat Bori staat voor kleinschaligheid bieden de chefs per dag slechts\n            één of twee gerechten aan. En het aantal porties zijn beperkt. Bij Bori staat kwaliteit voorop, niet de\n            kwantiteit.\n            "
-          ),
+          _c("p", [
+            _vm._v(
+              "\n                Dagelijks bieden chefs op Bori.nl hun specials aan. Deze worden moeten vooraf worden besteld zodat\n                de\n                chef precies weet hoeveel inkopen hij of zij moet doen en de klant altijd gegarandeerd is van een\n                dagverse maaltijd. Maar let op! Omdat Bori staat voor kleinschaligheid bieden de chefs per dag\n                slechts\n                één of twee gerechten aan. En het aantal porties zijn beperkt. Bij Bori staat kwaliteit voorop, niet\n                de\n                kwantiteit.\n            "
+            )
+          ]),
+          _vm._v(" "),
           _c("ul", [
             _c("li", [
               _vm._v("Bori is hét alternatief voor massa en overvloed.")
