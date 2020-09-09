@@ -2220,6 +2220,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('aw mounted.');
@@ -38263,8 +38271,27 @@ var staticRenderFns = [
           _vm._v(
             "\n\n            Dagelijks bieden chefs op Bori.nl hun specials aan. Deze worden moeten vooraf worden besteld zodat de\n            chef precies weet hoeveel inkopen hij of zij moet doen en de klant altijd gegarandeerd is van een\n            dagverse maaltijd. Maar let op! Omdat Bori staat voor kleinschaligheid bieden de chefs per dag slechts\n            één of twee gerechten aan. En het aantal porties zijn beperkt. Bij Bori staat kwaliteit voorop, niet de\n            kwantiteit.\n            "
           ),
-          _c("br"),
-          _c("br"),
+          _c("ul", [
+            _c("li", [
+              _vm._v("Bori is hét alternatief voor massa en overvloed.")
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _vm._v(
+                "Bori is hét platform voor jong professionals die samenwerken."
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", [_vm._v("Bori is liefde voor eten, liefde voor smaak.")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("Bori is liefde voor beleving creativiteit.")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("Bori is liefde voor authenticiteit.")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("Bori is liefde voor alle culturen.")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("Bori is lobi!")])
+          ]),
           _vm._v(
             "\n            Plaats dus op tijd uw bestelling zodat u zeker weet dat u Bori-eten heeft!\n            "
           ),
