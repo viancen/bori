@@ -21,7 +21,7 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/login/insta','Auth\LoginController@redirectToInsta');
 Route::get('/login/insta/callback', 'Auth\LoginController@handleInstaCallback');
