@@ -7,7 +7,9 @@
 .card {
   margin-bottom: 30px;
 }
-
+.grecaptcha-badge {
+    visibility: hidden;
+}
 .chef {
   border: solid 1px #000;
   padding: 10px;
