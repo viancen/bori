@@ -58,47 +58,107 @@
                                     <div class="form-row margin-top-10">
 
                                         <div class="col">
-                                            <input type="text" class="form-control" id="email" placeholder="Je e-mail *"
-                                                   name="email">
+                                            <div class="input-group ">
+                                                <input type="text" class="form-control" id="email"
+                                                       placeholder="Je e-mail *"
+                                                       name="email">
+                                                <span class="input-group-append">
+                                                    <div class="input-group-text bg-transparent"><i
+                                                        class="fa fa-at"></i></div>
+                                                </span>
+                                            </div>
                                         </div>
                                         <div class="col">
-                                            <input type="text" class="form-control" id="phone"
-                                                   placeholder="Je telefoonnummer *" name="phone">
+                                            <div class="input-group ">
+                                                <input type="text" class="form-control" id="phone"
+                                                       placeholder="Je telefoonnummer *" name="phone">
+                                                <span class="input-group-append">
+                                                    <div class="input-group-text bg-transparent"><i
+                                                        class="fa fa-phone"></i></div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="form-row margin-top-10">
+                                        <div class="col">
+                                            <div class="input-group ">
+                                                <input type="text" class="form-control" id="street" required
+                                                       placeholder="Straat *" name="street">
+                                                <span class="input-group-append">
+                                                    <div class="input-group-text bg-transparent"><i
+                                                        class="fa fa-map-marker"></i></div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="input-group ">
+                                                <input type="text" class="form-control" id="housenr" required
+                                                       placeholder="huisnr *" name="housenr">
+                                                <span class="input-group-append">
+                                                    <div class="input-group-text bg-transparent"><i
+                                                        class="fa fa-map-marker"></i></div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row margin-top-10">
+                                        <div class="col">
+                                            <div class="input-group ">
+                                                <input type="text" class="form-control" id="zipcode" required
+                                                       placeholder="Postcode *" name="zipcode">
+                                                <span class="input-group-append">
+                                                    <div class="input-group-text bg-transparent"><i
+                                                        class="fa fa-map-marker"></i></div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="input-group ">
+                                                <input type="text" class="form-control" id="city" required
+                                                       placeholder="Plaats *" name="city">
+                                                <span class="input-group-append">
+                                                    <div class="input-group-text bg-transparent"><i
+                                                        class="fa fa-map-marker"></i></div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="form-row margin-top-10">
+                                        <div class="col">
+                                            <div class="input-group ">
+
+                                            <textarea class="form-control" id="comment"
+                                                      placeholder="Opmerkingen/allergieen/complimenten ;) etc"
+                                                      name="comments"></textarea>
+                                                <span class="input-group-append">
+                                                    <div class="input-group-text bg-transparent"><i
+                                                        class="fa fa-comment-alt"></i></div>
+                                                </span>
+                                            </div>
                                         </div>
 
                                     </div>
-                                    <div class="form-row margin-top-10">
-                                        <div class="col">
-                                            <input type="text" class="form-control" id="street" required
-                                                   placeholder="Straat *" name="street">
-                                        </div>
-                                        <div class="col">
-                                            <input type="text" class="form-control" id="housenr" required
-                                                   placeholder="huisnr *" name="housenr">
-                                        </div>
-                                    </div>
-                                    <div class="form-row margin-top-10">
-                                        <div class="col">
-                                            <input type="text" class="form-control" id="zipcode" required
-                                                   placeholder="Postcode *" name="zipcode">
-                                        </div>
-                                        <div class="col">
-                                            <input type="text" class="form-control" id="city" required
-                                                   placeholder="Plaats *" name="city">
-                                        </div>
-                                    </div>
-                                    <hr/>
+                                    <br/>
                                     <div class="form-row margin-top-10">
 
                                         <div class="col">
-                                            <select class="form-control" id="portion-amount" name="amount"
-                                                    @change="caculateOrder">
-                                                <option value="1">1 portie</option>
-                                                <option value="2">2 porties</option>
-                                                <option value="3">3 porties</option>
-                                                <option value="4">4 porties</option>
-                                                <option value="5">5 porties</option>
-                                            </select>
+                                            <div class="input-group ">
+                                                <select class="form-control" id="portion-amount" name="amount"
+                                                        @change="caculateOrder">
+                                                    <option value="1">1 portie</option>
+                                                    <option value="2">2 porties</option>
+                                                    <option value="3">3 porties</option>
+                                                    <option value="4">4 porties</option>
+                                                    <option value="5">5 porties</option>
+                                                </select>
+                                                <span class="input-group-append">
+                                                    <div class="input-group-text bg-transparent"><i
+                                                        class="fa fa-shopping-basket"></i></div>
+                                                </span>
+                                            </div>
+
                                         </div>
 
 
