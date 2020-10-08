@@ -154,7 +154,7 @@ export default {
                 this.items = [
                     data.dish.image1,
                     data.dish.image2,
-                    // data.dish.image3
+                    data.dish.image3
                 ];
                 this.random = data;
                 this.loading = false;
