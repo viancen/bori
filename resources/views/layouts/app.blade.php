@@ -43,14 +43,14 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link disabled" href="#">
                             <i class="fas fa-fw fa-cloud-meatball"></i>
-                            Chefs</a>
+                            Chefs <span class="badge badge-warning">coming soon</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link disabled" href="#">
                             <i class="fas fa-fw fa-utensils"></i>
-                            Gerechten</a>
+                            Gerechten  <span class="badge badge-warning">coming soon</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">

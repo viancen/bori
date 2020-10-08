@@ -13,15 +13,17 @@
                     :index="index"
                     @close="index = null">
                 </CoolLightBox>
-                <div
-                    class="image cursor-pointer"
-                    v-for="(image, imageIndex) in items"
-                    :key="imageIndex"
-                    @click="index = imageIndex"
-                >
-                    <img :src="image" class=" dish-image">
-                </div>
 
+                <div class="text-center">
+                    <div
+                        class="image dish-image cursor-pointer"
+                        v-for="(image, imageIndex) in items"
+                        :key="imageIndex"
+                        @click="index = imageIndex"
+                    >
+                        <img :src="image">
+                    </div>
+                </div>
             </div>
             <div class="card-body">
 
@@ -50,12 +52,68 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Hier het bestelformulier.</p>
+                                    Je gaat bestellen: <h4>{{ random.dish.name }} van {{ random.name }}</h4>
+
+                                    Na je bestelling neemt onze chef contact met je op over de levering en betaling.
+                                    <div class="form-row margin-top-10">
+
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="email" placeholder="Je e-mail *"
+                                                   name="email">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="phone"
+                                                   placeholder="Je telefoonnummer *" name="phone">
+                                        </div>
+
+                                    </div>
+                                    <div class="form-row margin-top-10">
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="street" required
+                                                   placeholder="Straat *" name="street">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="housenr" required
+                                                   placeholder="huisnr *" name="housenr">
+                                        </div>
+                                    </div>
+                                    <div class="form-row margin-top-10">
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="zipcode" required
+                                                   placeholder="Postcode *" name="zipcode">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="city" required
+                                                   placeholder="Plaats *" name="city">
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="form-row margin-top-10">
+
+                                        <div class="col">
+                                            <select class="form-control" id="portion-amount" name="amount"
+                                                    @change="caculateOrder">
+                                                <option value="1">1 portie</option>
+                                                <option value="2">2 porties</option>
+                                                <option value="3">3 porties</option>
+                                                <option value="4">4 porties</option>
+                                                <option value="5">5 porties</option>
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                    <div class=" margin-top-10 text-right">
+                                        Totaal: <span class="text-secondary">
+                                        &euro;</span> <span id="total-price"
+                                                            class="text-secondary strong">{{ random.dish.price }}</span>
+
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" @click="showModal = false">Close
+                                    <button type="button" class="btn btn-secondary" @click="showModal = false">Sluiten
                                     </button>
-                                    <button type="button" class="btn btn-primary">Bestllen</button>
+                                    <button type="button" class="btn btn-primary">Bestellen</button>
                                 </div>
                             </div>
                         </div>
@@ -96,13 +154,21 @@ export default {
                 this.items = [
                     data.dish.image1,
                     data.dish.image2,
-                    data.dish.image3
+                    // data.dish.image3
                 ];
                 this.random = data;
                 this.loading = false;
 
 
             }).catch((err) => console.error(err));
+        },
+        caculateOrder() {
+
+            console.log(parseFloat(this.random.dish.price));
+            console.log(parseInt(document.getElementById('portion-amount').value));
+
+            let price = parseFloat(parseFloat(parseFloat(this.random.dish.price) * parseInt(document.getElementById('portion-amount').value))).toFixed(2);
+            document.getElementById('total-price').innerHTML = price;
         }
     },
     components: {
