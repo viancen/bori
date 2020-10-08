@@ -24,13 +24,19 @@
                         <img :src="image">
                     </div>
                 </div>
-            </div>
-            <div class="card-body">
 
-                <strong>Portie:</strong> <span class="text-danger"> {{ random.dish.amount }}</span><br/>
-                <strong>Prijs:</strong> <span class="text-danger"> &euro; {{ random.dish.price }}</span>
+                <div class="margin-top-10 display-block">
+                    <h3>
+                        <div class=" margin-top-10 badge  badge-dark"> Kip </div>
+                        <div class="margin-top-10 badge text-lg-center badge-dark">
+                            {{ random.dish.amount }}
+                        </div>
+                        <div class=" margin-top-10 badge  badge-dark"> &euro; {{ random.dish.price }}</div>
 
+                    </h3>
+                </div>
             </div>
+
             <div class="card-footer text-center">
 
                 <a class="btn btn-sm btn-primary" href="#" id="show-modal" @click="showModal = true">

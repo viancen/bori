@@ -13,6 +13,11 @@
   font-weight: bold;
 }
 
+.display-block {
+  clear: both;
+  display: block !important;
+}
+
 .margin-top-10 {
   margin-top: 10px;
 }
