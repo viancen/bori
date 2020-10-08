@@ -7,7 +7,7 @@
             </div>
             <div class="col-md-6">
                 <about-widget></about-widget>
-               <!-- <tshirt-component></tshirt-component>-->
+              <tshirt-component></tshirt-component>
             </div>
 
 

@@ -26,6 +26,8 @@
     "dependencies": {
         "moment": "^2.27.0",
         "vform": "^1.0.1",
+        "vue-cool-lightbox": "^2.6.3",
+        "vue-easy-lightbox": "^1.0.0-rc.1",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.4.0"
     }

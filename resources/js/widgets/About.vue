@@ -24,11 +24,9 @@
                     <li>Bori is liefde voor alle culturen.</li>
                     <li>Bori is lobi!</li>
                 </ul>
-                Plaats dus op tijd uw bestelling zodat u zeker weet dat u Bori-eten heeft!
+                Plaats dus op tijd uw bestelling zodat u zeker weet dat u Bori-eten heeft! <a class="underline" href="/about">Lees meer over het concept &raquo;</a>
                 <br/><br/>
-            </div>
-            <div class="card-footer">
-                <a class="btn btn-dark float-right" href="/about">Lees meer over het concept &raquo;</a>
+
             </div>
         </div>
     </div>

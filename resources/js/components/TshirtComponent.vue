@@ -1,16 +1,16 @@
 <template>
     <div class="card flat-border bg-light">
-        <div class="card-header"><i class="fas fa-tshirt"></i> Pre-order jouw t-shirt</div>
+        <div class="card-header"><i class="fas fa-tshirt"></i> Support Bori</div>
 
         <div class="card-body">
-            <p> Get your original t-shirt for only &euro; 29,50
+            <p> Support Bori met het kopen van een t-shirt voor &euro; 29,50
                 <Br/>
                 <Br/>
                 interdum tellus dapibus non. Fusce sit amet lacus in velit venenatis finibus in id ligula.
                 Mauris ex diam, tristique et rhoncus vel, hendrerit eget mauris. Etiam facilisis rutrum
                 nulla,
                 vitae accumsan magna aliquam et. Donec ac risus eu sem dictum tempus.</p>
-            <img src="/images/patta-example.jpeg"/>
+            <img src="/images/patta-example.jpeg" style="width:100%;"/>
             <hr/>
             <form>
                 <div class="form-group">

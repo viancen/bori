@@ -28,3 +28,8 @@ Route::get('/login/insta/callback', 'Auth\LoginController@handleInstaCallback');
 
 Route::get('/login/facebook', 'Auth\LoginController@redirectToFacebook');
 Route::get('/login/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
+
+Route::get('api/random-dish','Chefs@randomDish');
+Route::get('api/chefs','Chefs@index');
+Route::get('chef-image/{image}','Chefs@image');
+Route::get('dish-image/{image}','Chefs@dishImage');
