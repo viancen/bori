@@ -40802,14 +40802,14 @@ var render = function() {
               _c("div", { staticClass: "card-body" }, [
                 _c("strong", [_vm._v("Portie:")]),
                 _vm._v(" "),
-                _c("span", { staticClass: "text-light" }, [
+                _c("span", { staticClass: "text-danger" }, [
                   _vm._v(" " + _vm._s(_vm.random.dish.amount))
                 ]),
                 _c("br"),
                 _vm._v(" "),
                 _c("strong", [_vm._v("Prijs:")]),
                 _vm._v(" "),
-                _c("span", { staticClass: "text-light" }, [
+                _c("span", { staticClass: "text-danger" }, [
                   _vm._v(" € " + _vm._s(_vm.random.dish.price))
                 ])
               ]),
@@ -40886,7 +40886,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "modal-body" }, [
-                              _c("p", [_vm._v("Modal body text goes here.")])
+                              _c("p", [_vm._v("Hier het bestelformulier.")])
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "modal-footer" }, [
@@ -40914,7 +40914,7 @@ var render = function() {
                                   staticClass: "btn btn-primary",
                                   attrs: { type: "button" }
                                 },
-                                [_vm._v("Save changes")]
+                                [_vm._v("Bestllen")]
                               )
                             ])
                           ])

@@ -25,8 +25,8 @@
             </div>
             <div class="card-body">
 
-                <strong>Portie:</strong> <span class="text-light"> {{ random.dish.amount }}</span><br/>
-                <strong>Prijs:</strong> <span class="text-light"> &euro; {{ random.dish.price }}</span>
+                <strong>Portie:</strong> <span class="text-danger"> {{ random.dish.amount }}</span><br/>
+                <strong>Prijs:</strong> <span class="text-danger"> &euro; {{ random.dish.price }}</span>
 
             </div>
             <div class="card-footer text-center">
@@ -50,12 +50,12 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Modal body text goes here.</p>
+                                    <p>Hier het bestelformulier.</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" @click="showModal = false">Close
                                     </button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="button" class="btn btn-primary">Bestllen</button>
                                 </div>
                             </div>
                         </div>
