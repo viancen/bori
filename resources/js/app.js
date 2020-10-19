@@ -9,9 +9,6 @@ require('./bootstrap');
 //--init vue
 window.Vue = require('vue');
 
-
-
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -22,15 +19,14 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+Vue.component('editor', require('./components/elements/Editor'));
 
 Vue.component('main-component', require('./components/MainComponent.vue').default);
 Vue.component('chefs-component', require('./components/ChefsComponent.vue').default);
 Vue.component('menu-component', require('./components/MenuComponent.vue').default);
 Vue.component('about-component', require('./components/AboutComponent.vue').default);
 Vue.component('tshirt-component', require('./components/TshirtComponent.vue').default);
-
-
-
+Vue.component('my-dishes', require('./components/account/MyDishes.vue').default);
 
 
 /**
@@ -42,4 +38,6 @@ Vue.component('tshirt-component', require('./components/TshirtComponent.vue').de
 const app = new Vue({
     el: '#app',
 });
+
+
 

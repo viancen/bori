@@ -21,6 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <link href="{{asset('fonts/fa/css/all.min.css')}}" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet">
 
     <link rel="icon" href="/images/favicon.svg">
 
@@ -45,12 +46,12 @@
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#">
                             <i class="fas fa-fw fa-cloud-meatball"></i>
-                            Chefs <span class="badge badge-warning">coming soon</span></a>
+                            Chefs <span class="badge badge-warning">soon!</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#">
                             <i class="fas fa-fw fa-utensils"></i>
-                            Gerechten  <span class="badge badge-warning">coming soon</span></a>
+                            Gerechten <span class="badge badge-warning">soon!</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">
@@ -87,6 +88,11 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @if(Auth::user()->user_type == 'chef')
+                                    <a class="dropdown-item" href="/chef/my-dishes">
+                                        <i class="far fa-fw fa-user-circle"></i> {{ __('Mijn profiel') }}
+                                    </a>
+                                @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

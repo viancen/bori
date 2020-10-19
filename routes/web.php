@@ -21,6 +21,10 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
+Route::get('/chef/my-dishes', function () {
+    return view('account/chef/dishes');
+})->middleware(['is_chef']);
+
 Auth::routes(['verify' => true]);
 
 Route::get('/login/insta','Auth\LoginController@redirectToInsta');
@@ -28,6 +32,11 @@ Route::get('/login/insta/callback', 'Auth\LoginController@handleInstaCallback');
 
 Route::get('/login/facebook', 'Auth\LoginController@redirectToFacebook');
 Route::get('/login/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
+
+Route::get('api/me','Chefs@me')->middleware(['is_chef']);
+Route::put('api/save-me','Chefs@saveProfile')->middleware(['is_chef']);
+Route::get('api/dish','Chefs@dish')->middleware(['is_chef']);
+Route::put('api/dish/{id}','Chefs@saveDish')->middleware(['is_chef']);
 
 Route::get('api/random-dish','Chefs@randomDish');
 Route::get('api/chefs','Chefs@index');

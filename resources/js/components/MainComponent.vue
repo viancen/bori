@@ -1,13 +1,13 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <menu-component></menu-component>
                 <chefs-component></chefs-component>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <about-widget></about-widget>
-              <tshirt-component></tshirt-component>
+               <!--<tshirt-component></tshirt-component>-->
             </div>
 
 

@@ -7,14 +7,14 @@
             </div>
 
             <div class="card-body">
-                <p>{{ random.dish.description }}</p>
+                <p v-html="random.dish.description"></p>
                 <CoolLightBox
                     :items="items"
                     :index="index"
                     @close="index = null">
                 </CoolLightBox>
 
-                <div class="text-center">
+                <div class="text-center dish-images">
                     <div
                         class="image dish-image cursor-pointer"
                         v-for="(image, imageIndex) in items"
@@ -27,7 +27,7 @@
 
                 <div class="margin-top-10 display-block">
                     <h3>
-                        <div class=" margin-top-10 badge  badge-dark"> Kip </div>
+                        <div class=" margin-top-10 badge  badge-dark" v-if="random.dish.category"> {{ random.dish.category }} </div>
                         <div class="margin-top-10 badge text-lg-center badge-dark">
                             {{ random.dish.amount }}
                         </div>
