@@ -39,17 +39,19 @@ class Chefs extends Controller
             ->inRandomOrder()
             ->first();
 
-        if (!empty($dis->dish->description)) {
-            $dis->dish->description = nl2br($dis->dish->description);
-        }
-        if (empty($dis->dish->image1)) {
-            $dis->dish->image1 = '/images/bori-250.png';
-        }
-        if (empty($dis->dish->image2)) {
-            $dis->dish->image2 = '/images/bori-250.png';
-        }
-        if (empty($dis->dish->image3)) {
-            $dis->dish->image3 = '/images/bori-250.png';
+        if (!empty($dis->dish)) {
+            if (!empty($dis->dish->description)) {
+                $dis->dish->description = nl2br($dis->dish->description);
+            }
+            if (empty($dis->dish->image1)) {
+                $dis->dish->image1 = '/images/bori-250.png';
+            }
+            if (empty($dis->dish->image2)) {
+                $dis->dish->image2 = '/images/bori-250.png';
+            }
+            if (empty($dis->dish->image3)) {
+                $dis->dish->image3 = '/images/bori-250.png';
+            }
         }
         return $dis;
 
