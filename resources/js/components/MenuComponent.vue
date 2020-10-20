@@ -1,6 +1,6 @@
 <template>
     <div v-if="!loading">
-        <div class="card flat-border border-dark" v-if="random.dish">
+        <div class="card flat-border border-dark" v-if="random.dish && showModal == false">
             <div class="card-header flat-border bg-dark text-white">
                 <img src="/images/bori-white.svg" class="card-header-img"> <strong>{{ random.dish.name }}</strong> van
                 <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
@@ -27,11 +27,15 @@
 
                 <div class="margin-top-10 display-block">
                     <h3>
-                        <div class=" margin-top-10 badge  badge-dark" v-if="random.dish.category"> {{ random.dish.category }} </div>
-                        <div class="margin-top-10 badge text-lg-center badge-dark">
+                        <div class=" margin-top-10 badge  badge-dark" v-if="random.dish.category">
+                            {{ random.dish.category }}
+                        </div>
+                        <div v-if="random.dish.amount" class="margin-top-10 badge text-lg-center badge-dark">
                             {{ random.dish.amount }}
                         </div>
-                        <div class=" margin-top-10 badge  badge-dark"> &euro; {{ random.dish.price }}</div>
+                        <div v-if="random.dish.price" class=" margin-top-10 badge  badge-dark"> &euro;
+                            {{ random.dish.price }}
+                        </div>
 
                     </h3>
                 </div>
@@ -39,153 +43,183 @@
 
             <div class="card-footer text-center">
 
-                <a class="btn btn-sm btn-primary" href="#" id="show-modal" @click="showModal = true">
+                <a class="btn btn-sm btn-primary" href="javascript:void(0);" @click="showModal = true">
                     <i class="fas fa-shopping-basket"></i> Bestellen: &euro;{{ random.dish.price }} <sup>(per
                     portie)</sup></a>
 
             </div>
         </div>
         <div v-if="showModal">
-            <transition name="modal">
-                <div class="modal-mask">
-                    <div class="modal-wrapper">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Bestellen</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true" @click="showModal = false">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Je gaat bestellen: <h4>{{ random.dish.name }} van {{ random.name }}</h4>
+            <div class="card flat-border border-dark" v-if="random.dish">
 
-                                    Na je bestelling neemt onze chef contact met je op over de levering en betaling.
-                                    <div class="form-row margin-top-10">
+                <div class="card-header flat-border bg-dark text-white">
+                    <img src="/images/bori-white.svg" class="card-header-img">
+                    Bestellen: <strong>{{
+                        random.dish.name
+                    }}</strong> van
+                    <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
+                </div>
 
-                                        <div class="col">
-                                            <div class="input-group ">
-                                                <input type="text" class="form-control" id="email"
-                                                       placeholder="Je e-mail *"
-                                                       name="email">
-                                                <span class="input-group-append">
-                                                    <div class="input-group-text bg-transparent"><i
-                                                        class="fa fa-at"></i></div>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group ">
-                                                <input type="text" class="form-control" id="phone"
-                                                       placeholder="Je telefoonnummer *" name="phone">
-                                                <span class="input-group-append">
-                                                    <div class="input-group-text bg-transparent"><i
-                                                        class="fa fa-phone"></i></div>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br/>
-                                    <div class="form-row margin-top-10">
-                                        <div class="col">
-                                            <div class="input-group ">
-                                                <input type="text" class="form-control" id="street" required
-                                                       placeholder="Straat *" name="street">
-                                                <span class="input-group-append">
-                                                    <div class="input-group-text bg-transparent"><i
-                                                        class="fa fa-map-marker"></i></div>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group ">
-                                                <input type="text" class="form-control" id="housenr" required
-                                                       placeholder="huisnr *" name="housenr">
-                                                <span class="input-group-append">
-                                                    <div class="input-group-text bg-transparent"><i
-                                                        class="fa fa-map-marker"></i></div>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row margin-top-10">
-                                        <div class="col">
-                                            <div class="input-group ">
-                                                <input type="text" class="form-control" id="zipcode" required
-                                                       placeholder="Postcode *" name="zipcode">
-                                                <span class="input-group-append">
-                                                    <div class="input-group-text bg-transparent"><i
-                                                        class="fa fa-map-marker"></i></div>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group ">
-                                                <input type="text" class="form-control" id="city" required
-                                                       placeholder="Plaats *" name="city">
-                                                <span class="input-group-append">
-                                                    <div class="input-group-text bg-transparent"><i
-                                                        class="fa fa-map-marker"></i></div>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br/>
-                                    <div class="form-row margin-top-10">
-                                        <div class="col">
-                                            <div class="input-group ">
+                <div class="card-body">
+                    Je gaat bestellen: <h4>{{ random.dish.name }} van {{ random.name }}</h4>
+                    <div class="form-row margin-top-10">
 
-                                            <textarea class="form-control" id="comment"
-                                                      placeholder="Opmerkingen/allergieen/complimenten ;) etc"
-                                                      name="comments"></textarea>
-                                                <span class="input-group-append">
-                                                    <div class="input-group-text bg-transparent"><i
-                                                        class="fa fa-comment-alt"></i></div>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <br/>
-                                    <div class="form-row margin-top-10">
-
-                                        <div class="col">
-                                            <div class="input-group ">
-                                                <select class="form-control" id="portion-amount" name="amount"
-                                                        @change="caculateOrder">
-                                                    <option value="1">1 portie</option>
-                                                    <option value="2">2 porties</option>
-                                                    <option value="3">3 porties</option>
-                                                    <option value="4">4 porties</option>
-                                                    <option value="5">5 porties</option>
-                                                </select>
-                                                <span class="input-group-append">
-                                                    <div class="input-group-text bg-transparent"><i
-                                                        class="fa fa-shopping-basket"></i></div>
-                                                </span>
-                                            </div>
-
-                                        </div>
-
-
-                                    </div>
-                                    <div class=" margin-top-10 text-right">
-                                        Totaal: <span class="text-secondary">
-                                        &euro;</span> <span id="total-price"
-                                                            class="text-secondary strong">{{ random.dish.price }}</span>
-
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" @click="showModal = false">Sluiten
-                                    </button>
-                                    <button type="button" class="btn btn-primary">Bestellen</button>
+                        <div class="col">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" id="full_name" v-model="order.full_name"
+                                       placeholder="Je naam *"
+                                       name="full_name">
+                                <div class="input-group-append">
+                                    <div class="input-group-text bg-transparent"><i
+                                        class="fa fa-at"></i></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="form-row margin-top-10">
+
+
+                        <div class="col">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" id="email" v-model="order.email"
+                                       placeholder="Je e-mail *"
+                                       name="email">
+                                <div class="input-group-append">
+                                    <div class="input-group-text bg-transparent"><i
+                                        class="fa fa-at"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" id="phone" v-model="order.phone"
+                                       placeholder="Je telefoonnummer *" name="phone">
+                                <div class="input-group-append">
+                                    <div class="input-group-text bg-transparent"><i
+                                        class="fa fa-phone"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-row margin-top-10">
+                        <div class="col">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" id="street" required v-model="order.street"
+                                       placeholder="Straat *" name="street">
+                                <div class="input-group-append">
+                                    <div class="input-group-text bg-transparent"><i
+                                        class="fa fa-map-marker"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" id="housenr" required v-model="order.housenr"
+                                       placeholder="huisnr *" name="housenr">
+                                <div class="input-group-append">
+                                    <div class="input-group-text bg-transparent"><i
+                                        class="fa fa-map-marker"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row margin-top-10">
+                        <div class="col">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" id="zipcode" required v-model="order.zipcode"
+                                       placeholder="Postcode *" name="zipcode">
+                                <div class="input-group-append">
+                                    <div class="input-group-text bg-transparent"><i
+                                        class="fa fa-map-marker"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" id="city" required v-model="order.city"
+                                       placeholder="Plaats *" name="city">
+                                <div class="input-group-append">
+                                    <div class="input-group-text bg-transparent"><i
+                                        class="fa fa-map-marker"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-row margin-top-10">
+                        <div class="col">
+                            <div class="input-group ">
+
+                                            <textarea class="form-control" id="comment" v-model="order.comment"
+                                                      placeholder="Opmerkingen/allergieen/complimenten ;) etc"
+                                                      name="comments"></textarea>
+                                <div class="input-group-append">
+                                    <div class="input-group-text bg-transparent"><i
+                                        class="fa fa-comment-alt"></i></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br/>
+                    <div class="form-row margin-top-10">
+
+                        <div class="col">
+                            <div class="input-group ">
+                                <select class="form-control" id="portion-amount" name="amount" v-model="order.amount"
+                                        @change="caculateOrder">
+                                    <option value="1">1 portie</option>
+                                    <option value="2">2 porties</option>
+                                    <option value="3">3 porties</option>
+                                    <option value="4">4 porties</option>
+                                    <option value="5">5 porties</option>
+                                </select>
+                                <div class="input-group-append">
+                                    <div class="input-group-text bg-transparent"><i
+                                        class="fa fa-shopping-basket"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-row margin-top-10">
+
+                        <div class="col">
+                            <div class="input-group ">
+                                <select class="form-control" id="portion-transfer" name="transfer"
+                                        v-model="order.transfer"
+                                        @change="caculateOrder">
+                                    <option value="take-away">Afhalen</option>
+                                    <option value="deliver">Brengen</option>
+                                </select>
+                                <div class="input-group-append">
+                                    <div class="input-group-text bg-transparent"><i
+                                        class="fa fa-car"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" margin-top-10 text-right">
+                        Totaal:
+                        <span class="text-secondary">
+                            &euro;
+                        </span>
+                        <span id="total-price" class="text-secondary strong">
+                            {{ random.dish.price }}
+                        </span>
+
+                    </div>
+
                 </div>
-            </transition>
+                <div class="card-footer text-center">
+                    <button type="button" class="btn btn-secondary" @click="showModal = false">Sluiten
+                    </button>
+                    <button type="button" @click="placeorder" class="btn btn-primary">Bestellen</button>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
@@ -195,6 +229,12 @@
 
 import CoolLightBox from 'vue-cool-lightbox'
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
+
+import {VueReCaptcha} from 'vue-recaptcha-v3'
+
+window.Vue.use(VueReCaptcha, {
+    siteKey: '6Ld74skZAAAAAJ7MNZyD2ZvzgIKqRE0RY_5Gnxwb'
+})
 // register modal component
 
 
@@ -208,11 +248,41 @@ export default {
             showModal: false,
             items: [],
             index: null,
+            order: {
+                token: null,
+                city: null,
+                full_name: null,
+                email: null,
+                phone: null,
+                street: null,
+                housenr: null,
+                comment: null,
+                zipcode: null,
+                transfer: null,
+                amount: null
+            },
             random: null,
             loading: true
         }
     },
     methods: {
+        async recaptcha() {
+            // (optional) Wait until recaptcha has been loaded.
+            await this.$recaptchaLoaded()
+
+            const recaptcha = this.$recaptchaInstance
+
+            // Hide reCAPTCHA badge:
+            recaptcha.hideBadge()
+
+            // Execute reCAPTCHA with action "login".
+            this.order.token = await this.$recaptcha('order')
+
+            console.log(this.order);
+        },
+        placeorder() {
+            this.recaptcha();
+        },
         read() {
 
             axios.get('/api/random-dish').then(({data}) => {
@@ -222,6 +292,8 @@ export default {
                     data.dish.image2,
                     data.dish.image3
                 ];
+                data.dish.price = data.dish.price.toFixed(2);
+
                 this.random = data;
                 this.loading = false;
 

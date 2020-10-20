@@ -30,6 +30,7 @@
         "vue-cool-lightbox": "^2.6.3",
         "vue-easy-lightbox": "^1.0.0-rc.1",
         "vue-progressbar": "^0.7.5",
+        "vue-recaptcha-v3": "^1.9.0",
         "vue-router": "^3.4.0"
     }
 }
