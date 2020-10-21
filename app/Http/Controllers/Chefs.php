@@ -24,6 +24,21 @@ class Chefs extends Controller
 
     }
 
+
+
+    /*
+     *
+     */
+    public function placeOrder(){
+
+        $data = request()->all();
+
+        $user = User::find($data['user_id']);
+        $dish = Dishes::find($data['dish_id']);
+
+        return $data;
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -1,6 +1,6 @@
 <template>
     <div v-if="!loading">
-        <div class="card flat-border border-dark" v-if="random.dish && showModal == false">
+        <div class="card flat-border border-dark" v-if="random.dish && showModal == false && showThanks == false">
             <div class="card-header flat-border bg-dark text-white">
                 <img src="/images/bori-white.svg" class="card-header-img"> <strong>{{ random.dish.name }}</strong> van
                 <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
@@ -33,7 +33,7 @@
                         <div v-if="random.dish.amount" class="margin-top-10 badge text-lg-center badge-dark">
                             {{ random.dish.amount }}
                         </div>
-                        <div v-if="random.dish.price" class=" margin-top-10 badge  badge-dark"> &euro;
+                        <div v-if="random.dish.price" class=" margin-top-10 badge  badge-success"> &euro;
                             {{ random.dish.price }}
                         </div>
 
@@ -49,13 +49,29 @@
 
             </div>
         </div>
+        <div v-if="showThanks">
+            <div class="card flat-border border-success" v-if="random.dish">
+
+                <div class="card-header flat-border bg-success text-white">
+                    <img src="/images/bori-white.svg" class="card-header-img">
+                    Je bestelling is geplaatst: <strong>{{
+                    random.dish.name
+                    }}</strong> van
+                    <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
+                </div>
+
+                <div class="card-body">
+                    Bedankt voor je bestelling, je hebt een e-mail ontvangen met de details!
+                </div>
+            </div>
+        </div>
         <div v-if="showModal">
             <div class="card flat-border border-dark" v-if="random.dish">
 
                 <div class="card-header flat-border bg-dark text-white">
                     <img src="/images/bori-white.svg" class="card-header-img">
                     Bestellen: <strong>{{
-                        random.dish.name
+                    random.dish.name
                     }}</strong> van
                     <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
                 </div>
@@ -169,7 +185,7 @@
                             <div class="input-group ">
                                 <select class="form-control" id="portion-amount" name="amount" v-model="order.amount"
                                         @change="caculateOrder">
-                                    <option value="1">1 portie</option>
+                                    <option value="1" selected>1 portie</option>
                                     <option value="2">2 porties</option>
                                     <option value="3">3 porties</option>
                                     <option value="4">4 porties</option>
@@ -215,7 +231,7 @@
                 <div class="card-footer text-center">
                     <button type="button" class="btn btn-secondary" @click="showModal = false">Sluiten
                     </button>
-                    <button type="button" @click="placeorder" class="btn btn-primary">Bestellen</button>
+                    <button type="button" @click="placeOrder" class="btn btn-primary">Bestellen</button>
                 </div>
             </div>
 
@@ -230,11 +246,7 @@
 import CoolLightBox from 'vue-cool-lightbox'
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
-import {VueReCaptcha} from 'vue-recaptcha-v3'
 
-window.Vue.use(VueReCaptcha, {
-    siteKey: '6Ld74skZAAAAAJ7MNZyD2ZvzgIKqRE0RY_5Gnxwb'
-})
 // register modal component
 
 
@@ -246,9 +258,13 @@ export default {
     data() {
         return {
             showModal: false,
+            showThanks: false,
             items: [],
             index: null,
             order: {
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                user_id: null,
+                dish_id: null,
                 token: null,
                 city: null,
                 full_name: null,
@@ -265,24 +281,9 @@ export default {
             loading: true
         }
     },
+
     methods: {
-        async recaptcha() {
-            // (optional) Wait until recaptcha has been loaded.
-            await this.$recaptchaLoaded()
 
-            const recaptcha = this.$recaptchaInstance
-
-            // Hide reCAPTCHA badge:
-            recaptcha.hideBadge()
-
-            // Execute reCAPTCHA with action "login".
-            this.order.token = await this.$recaptcha('order')
-
-            console.log(this.order);
-        },
-        placeorder() {
-            this.recaptcha();
-        },
         read() {
 
             axios.get('/api/random-dish').then(({data}) => {
@@ -295,18 +296,25 @@ export default {
                 data.dish.price = data.dish.price.toFixed(2);
 
                 this.random = data;
+                this.order.dish_id = data.dish.id;
+                this.order.user_id = data.id;
                 this.loading = false;
 
 
             }).catch((err) => console.error(err));
         },
-        caculateOrder() {
-
-            console.log(parseFloat(this.random.dish.price));
-            console.log(parseInt(document.getElementById('portion-amount').value));
-
+        async caculateOrder() {
             let price = parseFloat(parseFloat(parseFloat(this.random.dish.price) * parseInt(document.getElementById('portion-amount').value))).toFixed(2);
             document.getElementById('total-price').innerHTML = price;
+        },
+        placeOrder() {
+
+            axios.post('/api/place-order', this.order).then(({data}) => {
+
+                this.showModal = false;
+                this.showThanks = true;
+
+            }).catch((err) => console.error(err));
         }
     },
     components: {
@@ -314,6 +322,7 @@ export default {
     },
     mounted() {
         this.read();
+
     }
 }
 </script>
