@@ -81,8 +81,8 @@
                     <div class="form-row margin-top-10">
 
                         <div class="col">
-                            <div class="input-group ">
-                                <input type="text" class="form-control" id="full_name" v-model="order.full_name"
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control " id="full_name" v-model="order.full_name"
                                        placeholder="Je naam *"
                                        name="full_name">
                                 <div class="input-group-append">
@@ -96,7 +96,7 @@
 
 
                         <div class="col">
-                            <div class="input-group ">
+                            <div class="input-group input-group-lg">
                                 <input type="text" class="form-control" id="email" v-model="order.email"
                                        placeholder="Je e-mail *"
                                        name="email">
@@ -106,6 +106,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <hr />
+                    <div class="form-row margin-top-10">
                         <div class="col">
                             <div class="input-group ">
                                 <input type="text" class="form-control" id="phone" v-model="order.phone"
@@ -117,7 +120,7 @@
                             </div>
                         </div>
                     </div>
-                    <br/>
+
                     <div class="form-row margin-top-10">
                         <div class="col">
                             <div class="input-group ">
@@ -162,7 +165,7 @@
                             </div>
                         </div>
                     </div>
-                    <br/>
+
                     <div class="form-row margin-top-10">
                         <div class="col">
                             <div class="input-group ">
@@ -178,14 +181,14 @@
                         </div>
 
                     </div>
-                    <br/>
+                    <hr />
                     <div class="form-row margin-top-10">
 
                         <div class="col">
                             <div class="input-group ">
                                 <select class="form-control" id="portion-amount" name="amount" v-model="order.amount"
                                         @change="caculateOrder">
-                                    <option value="1" selected>1 portie</option>
+                                    <option value="1" selected="selected">1 portie</option>
                                     <option value="2">2 porties</option>
                                     <option value="3">3 porties</option>
                                     <option value="4">4 porties</option>
@@ -198,7 +201,7 @@
                             </div>
                         </div>
                     </div>
-                    <br/>
+
                     <div class="form-row margin-top-10">
 
                         <div class="col">
@@ -206,8 +209,8 @@
                                 <select class="form-control" id="portion-transfer" name="transfer"
                                         v-model="order.transfer"
                                         @change="caculateOrder">
-                                    <option value="take-away">Afhalen</option>
-                                    <option value="deliver">Brengen</option>
+                                    <option value="take-away" selected="selected">Afhalen</option>
+                                    <option value="deliver">Bezorgen (+ 8,-, Enkel Amsterdam)</option>
                                 </select>
                                 <div class="input-group-append">
                                     <div class="input-group-text bg-transparent"><i
@@ -305,6 +308,7 @@ export default {
         },
         async caculateOrder() {
             let price = parseFloat(parseFloat(parseFloat(this.random.dish.price) * parseInt(document.getElementById('portion-amount').value))).toFixed(2);
+
             document.getElementById('total-price').innerHTML = price;
         },
         placeOrder() {
