@@ -41,6 +41,7 @@
                             <div><br/></div>
                             <label>Picture</label>
                             <div class="input-group">
+                                <input type="file" class="form-control">
                                 <input v-model="profile.avatar" class="form-control" v-on:change="waitToSave"></input>
                             </div>
 
