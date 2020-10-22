@@ -78,6 +78,14 @@
                                        v-on:change="waitToSaveDish"></input>
                             </div>
                             <div><br/></div>
+                            <label>Afhaal/bezorgtijd beschrijving</label>
+                            <div class="input-group">
+                                <input v-model="dish.timespan" placeholder="Bijv. Maandag - Dinsdag tussen 15:00 en 20:00" class="form-control"
+                                       v-on:change="waitToSaveDish"></input>
+                                <input v-model="dish.delivery_cost" placeholder="Indien je ook bezorgd. bijv 2,50" class="form-control"
+                                       v-on:change="waitToSaveDish"></input>
+                            </div>
+                            <div><br/></div>
                             <label>Prijs per</label>
                             <div class="input-group">
                                 <input v-model="dish.price" placeholder="Bijv. 19,50" class="form-control"
@@ -86,6 +94,7 @@
                                 <input v-model="dish.amount" placeholder="Bijv. per liter" class="form-control"
                                        v-on:change="waitToSaveDish"></input>
                             </div>
+
                             <div><br/></div>
                             <label>Afbeelding(en)</label>
                             <div class="row">
@@ -128,6 +137,19 @@
                                 </div>
                                 <div class="col">
                                     <img v-if="dish.image3" :src="dish.image3" id="dish-image-3"
+                                         class="rounded mx-auto d-block max-width-150 max-height-150">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <input type="file" id="imag4" class="form-control" ref="image4"
+                                               v-on:change="handleFileUpload(4)"/>
+
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <img v-if="dish.image4" :src="dish.image4" id="dish-image-4"
                                          class="rounded mx-auto d-block max-width-150 max-height-150">
                                 </div>
                             </div>
@@ -199,8 +221,10 @@ export default {
                 this.file = this.$refs.image1.files[0];
             } else if (nr == 2) {
                 this.file = this.$refs.image2.files[0];
-            } else {
+            } else if (nr == 3) {
                 this.file = this.$refs.image3.files[0];
+            } else {
+                this.file = this.$refs.image4.files[0];
             }
             this.submitFile();
         },
