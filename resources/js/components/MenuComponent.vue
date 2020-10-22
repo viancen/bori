@@ -2,7 +2,7 @@
     <div v-if="!loading">
         <div class="card flat-border border-dark" v-if="random.dish && showModal == false && showThanks == false">
             <div class="card-header flat-border bg-dark text-white">
-                <img src="/images/bori-white.svg" class="card-header-img"> <strong>{{ random.dish.name }}</strong> van
+                <img src="/static-images/bori-white.svg" class="card-header-img"> <strong>{{ random.dish.name }}</strong> van
                 <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
             </div>
 
@@ -53,7 +53,7 @@
             <div class="card flat-border border-success" v-if="random.dish">
 
                 <div class="card-header flat-border bg-success text-white">
-                    <img src="/images/bori-white.svg" class="card-header-img">
+                    <img src="/static-images/bori-white.svg" class="card-header-img">
                     Je bestelling is geplaatst: <strong>{{
                     random.dish.name
                     }}</strong> van
@@ -69,7 +69,7 @@
             <div class="card flat-border border-dark" v-if="random.dish">
 
                 <div class="card-header flat-border bg-dark text-white">
-                    <img src="/images/bori-white.svg" class="card-header-img">
+                    <img src="/static-images/bori-white.svg" class="card-header-img">
                     Bestellen: <strong>{{
                     random.dish.name
                     }}</strong> van

@@ -37,6 +37,8 @@ Route::get('api/me','Chefs@me')->middleware(['is_chef']);
 Route::put('api/save-me','Chefs@saveProfile')->middleware(['is_chef']);
 Route::get('api/dish','Chefs@dish')->middleware(['is_chef']);
 Route::put('api/dish/{id}','Chefs@saveDish')->middleware(['is_chef']);
+Route::post('api/upload-dish-image/{id}/{imagenr}','Chefs@saveDishImage')->middleware(['is_chef']);
+Route::post('api/upload-profile-image','Chefs@saveAvatarImage')->middleware(['is_chef']);
 Route::post('api/place-order','Chefs@placeOrder');
 
 Route::get('api/random-dish','Chefs@randomDish');

@@ -2,7 +2,7 @@
 
     <div class="card flat-border border-dark">
         <div class="card-header flat-border bg-dark text-white">
-            <img src="/images/bori.svg" class="card-header-img"> <strong>Ontmoet onze chefs</strong></div>
+            <img src="/static-images/bori.svg" class="card-header-img"> <strong>Ontmoet onze chefs</strong></div>
 
         <div class="card-body">
 

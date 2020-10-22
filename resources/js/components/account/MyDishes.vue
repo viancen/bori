@@ -41,8 +41,10 @@
                             <div><br/></div>
                             <label>Picture</label>
                             <div class="input-group">
-                                <input type="file" class="form-control">
-                                <input v-model="profile.avatar" class="form-control" v-on:change="waitToSave"></input>
+                                <input type="file" id="avatar" class="form-control" ref="avatar"
+                                       v-on:change="handleAvatar()"/>
+                                <img v-if="profile.avatar" :src="profile.avatar" id="image-profile"
+                                     style="width:50px;">
                             </div>
 
                             <div><br/></div>
@@ -82,18 +84,21 @@
                             <div><br/></div>
                             <label>Afbeelding(en)</label>
                             <div class="input-group">
-                                <input v-model="dish.image1" placeholder="Voer een complete url in" class="form-control"
-                                       v-on:change="waitToSaveDish"></input>
+                                <input type="file" id="image1" class="form-control" ref="image1"
+                                       v-on:change="handleFileUpload(1)"/>
+                                <img v-if="dish.image1" :src="dish.image1" id="dish-image-1" style="width:50px;">
                             </div>
                             <div><br/></div>
                             <div class="input-group">
-                                <input v-model="dish.image2" placeholder="Voer een complete url in" class="form-control"
-                                       v-on:change="waitToSaveDish"></input>
+                                <input type="file" id="image2" class="form-control" ref="image2"
+                                       v-on:change="handleFileUpload(2)"/>
+                                <img v-if="dish.image2" :src="dish.image2" id="dish-image-2" style="width:50px;">
                             </div>
                             <div><br/></div>
                             <div class="input-group">
-                                <input v-model="dish.image3" placeholder="Voer een complete url in" class="form-control"
-                                       v-on:change="waitToSaveDish"></input>
+                                <input type="file" id="imag3" class="form-control" ref="image3"
+                                       v-on:change="handleFileUpload(3)"/>
+                                <img v-if="dish.image3" :src="dish.image3" id="dish-image-3" style="width:50px;">
                             </div>
                             <div><br/></div>
                             <label>Omschrijving</label>
@@ -127,6 +132,9 @@ export default {
 
     data() {
         return {
+            file: '',
+            avatar: '',
+            dishImageNr: 1,
             profile: null,
             dish: null,
             loading: true,
@@ -153,6 +161,83 @@ export default {
 
 
         },
+        handleFileUpload(nr) {
+            this.dishImageNr = nr;
+            if (nr == 1) {
+                this.file = this.$refs.image1.files[0];
+            } else if (nr == 2) {
+                this.file = this.$refs.image2.files[0];
+            } else {
+                this.file = this.$refs.image3.files[0];
+            }
+            this.submitFile();
+        },
+        handleAvatar(nr) {
+            this.avatar = this.$refs.avatar.files[0];
+            this.submitAvatar();
+        },
+        /*
+           Submits the file to the server
+         */
+        submitFile() {
+            /*
+            set a form
+             */
+            let formData = new FormData();
+
+            /*
+                Add the form data we need to submit
+            */
+            formData.append('file', this.file);
+
+            let imgnr = this.dishImageNr;
+            /*
+              Make the request to the POST /single-file URL
+            */
+            axios.post('/api/upload-dish-image/' + this.dish.id + '/' + this.dishImageNr,
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+            ).then(function (resp) {
+                document.getElementById('dish-image-' + imgnr).src = resp.data;
+            }).catch(function (e) {
+                console.log('FAILURE!!',e);
+            });
+        },
+        /*
+                   Submits the file to the server
+                 */
+        submitAvatar() {
+            /*
+            set a form
+             */
+            let formData = new FormData();
+
+            /*
+                Add the form data we need to submit
+            */
+            formData.append('file', this.avatar);
+
+            /*
+              Make the request to the POST /single-file URL
+            */
+            axios.post('/api/upload-profile-image',
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+            ).then(function (resp) {
+                document.getElementById('image-profile').src = resp.data;
+            }).catch(function () {
+
+            });
+        },
+
         waitToSave: function () {
             // Unset previous timeout.
             clearTimeout(this.timeout);

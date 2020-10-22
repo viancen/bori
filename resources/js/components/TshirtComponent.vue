@@ -10,7 +10,7 @@
                 Mauris ex diam, tristique et rhoncus vel, hendrerit eget mauris. Etiam facilisis rutrum
                 nulla,
                 vitae accumsan magna aliquam et. Donec ac risus eu sem dictum tempus.</p>
-            <img src="/images/patta-example.jpeg" style="width:100%;"/>
+            <img src="/static-images/patta-example.jpeg" style="width:100%;"/>
             <hr/>
             <form>
                 <div class="form-group">

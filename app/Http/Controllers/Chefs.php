@@ -25,11 +25,11 @@ class Chefs extends Controller
     }
 
 
-
     /*
      *
      */
-    public function placeOrder(){
+    public function placeOrder()
+    {
 
         $data = request()->all();
 
@@ -136,6 +136,54 @@ class Chefs extends Controller
         $dish->save();
         $user->active_dish_id = $dish->id;
         $user->save();
+
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function saveDishImage($id, $imagenr)
+    {
+        $user = Auth::user();
+
+        if (empty($id)) {
+            if (empty($dish)) {
+                return response()->json(['status' => 'error', 'msg' => 'not allowed, no dish'], 400);
+            }
+        } else {
+            $dish = Dishes::where('user_id', $user->id)
+                ->where('id', $id)
+                ->first();
+            if (empty($dish)) {
+                return response()->json(['status' => 'error', 'msg' => 'not allowed'], 400);
+            }
+        }
+        $path = request()->file('file')->store('images/dishes');
+
+        $imagerec = 'image' . $imagenr;
+        $dish->{$imagerec} = asset($path);
+        $dish->save();
+
+        return asset($path);
+
+    }
+ /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function saveAvatarImage()
+    {
+        $user = Auth::user();
+
+        $path = request()->file('file')->store('images/chefs');
+
+        $user->avatar = asset($path);
+        $user->save();
+
+        return asset($path);
 
     }
 

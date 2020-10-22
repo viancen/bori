@@ -23,8 +23,9 @@
     <link href="{{asset('fonts/fa/css/all.min.css')}}" rel="stylesheet">
     <link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet">
 
-    <link rel="icon" href="/images/favicon.svg">
+    <link rel="icon" href="/static-images/favicon.svg">
 
+    <base href="{{url('/')}}" />
 
 </head>
 <body>
@@ -32,7 +33,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="/images/bori.svg"/>
+                <img src="/static-images/bori.svg"/>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
