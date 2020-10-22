@@ -6,6 +6,9 @@ use App\Models\Dishes;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 
 class Chefs extends Controller
 {
@@ -144,7 +147,7 @@ class Chefs extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function saveDishImage($id, $imagenr)
+    public function saveDishImage($id, $imagenr, Request $request)
     {
         $user = Auth::user();
 
@@ -160,32 +163,110 @@ class Chefs extends Controller
                 return response()->json(['status' => 'error', 'msg' => 'not allowed'], 400);
             }
         }
-        $path = request()->file('file')->store('images/dishes');
+
+        $this->validate($request, [
+            'file' => 'image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        // Get file from request
+        $file = $request->file('file');
+
+        // Get filename with extension
+        $filenameWithExt = $file->getClientOriginalName();
+
+        // Get file path
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+        // Remove unwanted characters
+        $filename = preg_replace("/[^A-Za-z0-9 ]/", '', $filename);
+        $filename = preg_replace("/\s+/", '-', $filename);
+
+        // Get the original image extension
+        $extension = $file->getClientOriginalExtension();
+
+        // Create unique file name
+        $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+
+        // Refer image to method resizeImage
+        $image = $this->resizeImage($file, $fileNameToStore, 'dishes');
 
         $imagerec = 'image' . $imagenr;
-        $dish->{$imagerec} = asset($path);
+        $dish->{$imagerec} = asset('images/dishes/' . $fileNameToStore);
         $dish->save();
 
-        return asset($path);
+        return asset('images/dishes/' . $fileNameToStore);
 
     }
- /**
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function saveAvatarImage()
+    public function saveAvatarImage(Request $request)
     {
         $user = Auth::user();
+        $this->validate($request, [
+            'file' => 'image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        // Get file from request
+        $file = $request->file('file');
 
-        $path = request()->file('file')->store('images/chefs');
+        // Get filename with extension
+        $filenameWithExt = $file->getClientOriginalName();
 
-        $user->avatar = asset($path);
+        // Get file path
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+        // Remove unwanted characters
+        $filename = preg_replace("/[^A-Za-z0-9 ]/", '', $filename);
+        $filename = preg_replace("/\s+/", '-', $filename);
+
+        // Get the original image extension
+        $extension = $file->getClientOriginalExtension();
+
+        // Create unique file name
+        $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+
+        // Refer image to method resizeImage
+        $image = $this->resizeImage($file, $fileNameToStore, 'chefs');
+
+        $user->avatar = asset('images/chefs/' . $fileNameToStore);
         $user->save();
 
-        return asset($path);
+        return asset('images/chefs/' . $fileNameToStore);
 
     }
+
+    /**
+     * Resizes a image using the InterventionImage package.
+     *
+     * @param object $file
+     * @param string $fileNameToStore
+     * @return bool
+     * @author Niklas Fandrich
+     */
+    public function resizeImage($file, $fileNameToStore, $dir)
+    {
+        // Resize image
+        $resize = Image::make($file)->resize(600, null, function ($constraint) {
+            $constraint->aspectRatio();
+        })->encode('jpg');
+
+        // Create hash value
+        $hash = md5($resize->__toString());
+
+        // Prepare qualified image name
+        $image = $hash . "jpg";
+
+        // Put image to storage
+        $save = Storage::put("images/{$dir}/{$fileNameToStore}", $resize->__toString());
+
+        if ($save) {
+            return $image;
+        }
+        return false;
+    }
+
 
     /**
      * Show the form for creating a new resource.
