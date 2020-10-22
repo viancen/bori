@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col">
                                     <img v-if="profile.avatar" :src="profile.avatar" id="image-profile"
-                                         class="rounded mx-auto d-block max-width-150">
+                                         class="rounded mx-auto d-block max-width-150 max-height-150">
                                 </div>
                             </div>
                             <div><br/></div>
@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="col">
                                     <img v-if="dish.image1" :src="dish.image1" id="dish-image-1"
-                                         class="rounded mx-auto d-block max-width-150">
+                                         class="rounded mx-auto d-block max-width-150 max-height-150">
                                 </div>
                             </div>
                             <div class="row">
@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="col">
                                     <img v-if="dish.image2" :src="dish.image2" id="dish-image-2"
-                                         class="rounded mx-auto d-block max-width-150">
+                                         class="rounded mx-auto d-block max-width-150 max-height-150">
                                 </div>
                             </div>
 
@@ -128,7 +128,7 @@
                                 </div>
                                 <div class="col">
                                     <img v-if="dish.image3" :src="dish.image3" id="dish-image-3"
-                                         class="rounded mx-auto d-block max-width-150">
+                                         class="rounded mx-auto d-block max-width-150 max-height-150">
                                 </div>
                             </div>
 
