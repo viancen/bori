@@ -40,13 +40,18 @@
                             </div>
                             <div><br/></div>
                             <label>Picture</label>
-                            <div class="input-group">
-                                <input type="file" id="avatar" class="form-control" ref="avatar"
-                                       v-on:change="handleAvatar()"/>
-                                <img v-if="profile.avatar" :src="profile.avatar" id="image-profile"
-                                     style="width:50px;">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <input type="file" id="avatar" class="form-control" ref="avatar"
+                                               v-on:change="handleAvatar()"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <img v-if="profile.avatar" :src="profile.avatar" id="image-profile"
+                                         class="rounded mx-auto d-block max-width-150">
+                                </div>
                             </div>
-
                             <div><br/></div>
                             <label>Profiel beschrijving</label>
                             <div class="input-group">
@@ -83,23 +88,50 @@
                             </div>
                             <div><br/></div>
                             <label>Afbeelding(en)</label>
-                            <div class="input-group">
-                                <input type="file" id="image1" class="form-control" ref="image1"
-                                       v-on:change="handleFileUpload(1)"/>
-                                <img v-if="dish.image1" :src="dish.image1" id="dish-image-1" style="width:50px;">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <input type="file" id="image1" class="form-control" ref="image1"
+                                               v-on:change="handleFileUpload(1)"/>
+
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <img v-if="dish.image1" :src="dish.image1" id="dish-image-1"
+                                         class="rounded mx-auto d-block max-width-150">
+                                </div>
                             </div>
-                            <div><br/></div>
-                            <div class="input-group">
-                                <input type="file" id="image2" class="form-control" ref="image2"
-                                       v-on:change="handleFileUpload(2)"/>
-                                <img v-if="dish.image2" :src="dish.image2" id="dish-image-2" style="width:50px;">
+                            <div class="row">
+                                <div class="col">
+
+
+                                    <div class="input-group">
+                                        <input type="file" id="image2" class="form-control" ref="image2"
+                                               v-on:change="handleFileUpload(2)"/>
+
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <img v-if="dish.image2" :src="dish.image2" id="dish-image-2"
+                                         class="rounded mx-auto d-block max-width-150">
+                                </div>
                             </div>
-                            <div><br/></div>
-                            <div class="input-group">
-                                <input type="file" id="imag3" class="form-control" ref="image3"
-                                       v-on:change="handleFileUpload(3)"/>
-                                <img v-if="dish.image3" :src="dish.image3" id="dish-image-3" style="width:50px;">
+
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <input type="file" id="imag3" class="form-control" ref="image3"
+                                               v-on:change="handleFileUpload(3)"/>
+
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <img v-if="dish.image3" :src="dish.image3" id="dish-image-3"
+                                         class="rounded mx-auto d-block max-width-150">
+                                </div>
                             </div>
+
                             <div><br/></div>
                             <label>Omschrijving</label>
                             <div class="input-group">
@@ -204,7 +236,7 @@ export default {
             ).then(function (resp) {
                 document.getElementById('dish-image-' + imgnr).src = resp.data;
             }).catch(function (e) {
-                console.log('FAILURE!!',e);
+                console.log('FAILURE!!', e);
             });
         },
         /*

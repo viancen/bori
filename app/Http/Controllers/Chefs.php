@@ -248,7 +248,7 @@ class Chefs extends Controller
     public function resizeImage($file, $fileNameToStore, $dir)
     {
         // Resize image
-        $resize = Image::make($file)->resize(600, null, function ($constraint) {
+        $resize = Image::make($file)->fit(400, 400, function ($constraint) {
             $constraint->aspectRatio();
         })->encode('jpg');
 
