@@ -181,7 +181,7 @@
                         </div>
 
                     </div>
-                    <hr />
+                    <br />
                     <div class="form-row margin-top-10">
 
                         <div class="col">
