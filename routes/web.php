@@ -36,6 +36,9 @@ Route::get('/login/facebook/callback', 'Auth\LoginController@handleFacebookCallb
 Route::get('api/me','Chefs@me')->middleware(['is_chef']);
 Route::put('api/save-me','Chefs@saveProfile')->middleware(['is_chef']);
 Route::get('api/dish','Chefs@dish')->middleware(['is_chef']);
+Route::post('api/dish','Chefs@storeDish')->middleware(['is_chef']);
+Route::get('api/my-dishes','Chefs@myDishes')->middleware(['is_chef']);
+Route::get('api/dish/{id}','Chefs@showDish')->middleware(['is_chef']);
 Route::put('api/dish/{id}','Chefs@saveDish')->middleware(['is_chef']);
 Route::post('api/upload-dish-image/{id}/{imagenr}','Chefs@saveDishImage')->middleware(['is_chef']);
 Route::post('api/upload-profile-image','Chefs@saveAvatarImage')->middleware(['is_chef']);

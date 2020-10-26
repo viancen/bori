@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 
 
 class Chefs extends Controller
@@ -50,28 +51,18 @@ class Chefs extends Controller
     public function randomDish()
     {
         //
-        $dis = User::where('user_type', 'chef')
-            ->where('available', true)
-            ->whereNotNull('active_dish_id')
-            ->with('dish')
+        $dis = Dishes::select()
+            ->where('active', true)
             ->inRandomOrder()
             ->first();
 
-        if (!empty($dis->dish)) {
-            if (!empty($dis->dish->description)) {
-                $dis->dish->description = nl2br($dis->dish->description);
-            }
-            if (empty($dis->dish->image1)) {
-                $dis->dish->image1 = '/images/bori-250.png';
-            }
-            if (empty($dis->dish->image2)) {
-                $dis->dish->image2 = '/images/bori-250.png';
-            }
-            if (empty($dis->dish->image3)) {
-                $dis->dish->image3 = '/images/bori-250.png';
-            }
+        $return = [];
+        if (!empty($dis)) {
+            $return = User::find($dis->user_id);
+            $return['dish'] = $dis;
         }
-        return $dis;
+
+        return $return;
 
     }
 
@@ -98,12 +89,57 @@ class Chefs extends Controller
             //create default dish
             $dish = new Dishes();
             $dish->user_id = $user->id;
+            $dish->active = true;
             $dish->save();
 
             $user->active_dish_id = $dish->id;
             $user->save();
         }
         return $dish;
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeDish()
+    {
+        $user = Auth::user();
+
+        //create default dish
+        $dish = new Dishes();
+        $dish->user_id = $user->id;
+        $dish->price = 2.50;
+        $dish->active = false;
+        $dish->save();
+
+        return $dish;
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showDish($id)
+    {
+        $user = Auth::user();
+        $dish = Dishes::where('user_id', $user->id)->where('id', $id)->first();
+        return $dish;
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function myDishes()
+    {
+        $user = Auth::user();
+        $dishes = Dishes::where('user_id', $user->id)->orderBy('id', 'desc')->get();
+
+        return $dishes;
     }
 
     /**
@@ -133,11 +169,27 @@ class Chefs extends Controller
         if (isset($putData['price'])) {
             $putData['price'] = trim(str_replace(',', '.', $putData['price']));
         }
+
+        if (isset($putData['toggle_state'])) {
+
+            unset($putData['toggle_state']);
+            if ($dish->active) {
+                $dish->active = false;
+                $user->active_dish_id = null;
+            } else {
+                Dishes::where('user_id', $user->id)->update(['active' => false]);
+                $dish->active = true;
+                $user->active_dish_id = $dish->id;
+            }
+
+        }
+
         foreach ($putData as $key => $val) {
             $dish->{$key} = $val;
         }
+
+
         $dish->save();
-        $user->active_dish_id = $dish->id;
         $user->save();
 
     }

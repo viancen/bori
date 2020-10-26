@@ -14,7 +14,7 @@
                                 class="far fa-fw fa-user-circle"></i> Profiel</a>
                             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-dish"
                                role="tab" aria-controls="nav-profile" aria-selected="false"> <i
-                                class="fas fa-fw fa-cloud-meatball"></i> Mijn gerecht</a>
+                                class="fas fa-fw fa-cloud-meatball"></i> Mijn gerechten</a>
                         </div>
                     </nav>
                     <div class="tab-content border padding-20" id="nav-tabContent">
@@ -64,11 +64,13 @@
                                 <button type="button" class="btn btn-dark btn-default">Save</button>
                             </div>
                         </div>
+
                         <div class="tab-pane fade" id="nav-dish" role="tabpanel" aria-labelledby="nav-profile-tab"
                              v-if="!loadingDish">
+
                             <label>Naam gerecht</label>
                             <div class="input-group">
-                                <input v-model="dish.name" placeholder="Bijv. Pindasoep" class="form-control"
+                                <input v-model="dish.name" placeholder="Bijv. Pindasoep" class="form-control" id="setfo"
                                        v-on:change="waitToSaveDish"></input>
                             </div>
                             <div><br/></div>
@@ -80,9 +82,11 @@
                             <div><br/></div>
                             <label>Afhaal/bezorgtijd beschrijving</label>
                             <div class="input-group">
-                                <input v-model="dish.timespan" placeholder="Bijv. Maandag - Dinsdag tussen 15:00 en 20:00" class="form-control"
+                                <input v-model="dish.timespan"
+                                       placeholder="Bijv. Maandag - Dinsdag tussen 15:00 en 20:00" class="form-control"
                                        v-on:change="waitToSaveDish"></input>
-                                <input v-model="dish.delivery_cost" placeholder="Indien je ook bezorgd. bijv 2,50" class="form-control"
+                                <input v-model="dish.delivery_cost" placeholder="Indien je ook bezorgd. bijv 2,50"
+                                       class="form-control"
                                        v-on:change="waitToSaveDish"></input>
                             </div>
                             <div><br/></div>
@@ -162,6 +166,31 @@
                                           v-on:change="waitToSaveDish"></textarea>
                             </div>
                             <div><br/></div>
+                            <table class="table table-hover table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <td>Naam gerecht</td>
+                                    <td>Nu actief</td>
+                                    <td>Prijs</td>
+                                </tr>
+                                </thead>
+                                <tbody v-if="!loadingDishes">
+                                <tr
+                                    v-for="(dishItem, dishIndex) in dishes">
+                                    <td @click="opendish(dishItem.id)" style="pointer:pointer"><strong>{{ dishItem.name }}</strong></td>
+                                    <td  style="pointer:pointer" @click="setStatus(dishItem.id)">
+                                        <span  v-if="dishItem.active"><i
+                                            class="fas fa-check text-success"></i></span>
+                                        <span v-if="!dishItem.active"><i
+                                            class="fas fa-times text-danger"></i></span>
+                                    </td>
+                                    <td  style="pointer:pointer" align="right">&euro; {{ dishItem.price }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <button type="button" class="btn btn-dark btn-lg" @click="addDish()"> + NIEUW GERECHT TOEVOEGEN
+                            </button>
                         </div>
                     </div>
 
@@ -169,6 +198,7 @@
 
             </div>
         </div>
+
     </div>
 
 </template>
@@ -191,7 +221,9 @@ export default {
             dishImageNr: 1,
             profile: null,
             dish: null,
+            dishes: null,
             loading: true,
+            loadingDishes: true,
             loadingDish: true
         }
     },
@@ -214,6 +246,35 @@ export default {
             }).catch((err) => console.error(err));
 
 
+        },
+        getdishes() {
+
+            axios.get('/api/my-dishes').then(({data}) => {
+
+                this.dishes = data;
+                this.loadingDishes = false;
+
+            }).catch((err) => console.error(err));
+
+
+        },
+        opendish(id) {
+            axios.get('/api/dish/' + id).then(({data}) => {
+
+                this.dish = data;
+                this.loadingDish = false;
+
+            }).catch((err) => console.error(err));
+        },
+        addDish() {
+            axios.post('/api/dish').then(({data}) => {
+
+                this.dish = data;
+                this.loadingDish = false;
+                document.getElementById('setfo').focus();
+                this.getdishes();
+
+            }).catch((err) => console.error(err));
         },
         handleFileUpload(nr) {
             this.dishImageNr = nr;
@@ -321,7 +382,18 @@ export default {
             axios.put('/api/dish/' + this.dish.id, {
                 data: this.dish
             }).then(response => {
-                console.log("Change saved...")
+                this.getdishes();
+            }).catch(e => {
+                console.log("Error... ")
+            });
+        },
+        setStatus: function (id) {
+            axios.put('/api/dish/' + id, {
+                data: {
+                    'toggle_state':true
+                }
+            }).then(response => {
+             this.getdishes();
             }).catch(e => {
                 console.log("Error... ")
             });
@@ -329,6 +401,7 @@ export default {
     },
     mounted() {
         this.read();
+        this.getdishes();
     }
 }
 </script>

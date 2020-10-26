@@ -42,6 +42,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function dish()
     {
-        return $this->hasOne('App\Models\Dishes');
+        return $this->hasMany('App\Models\Dishes');
     }
 }

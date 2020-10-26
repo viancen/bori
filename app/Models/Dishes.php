@@ -8,4 +8,6 @@ class Dishes extends Model
 {
     //
     protected $table = 'dishes';
+
+
 }
