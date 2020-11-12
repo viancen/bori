@@ -168,6 +168,7 @@ class Chefs extends Controller
 
         if (isset($putData['price'])) {
             $putData['price'] = trim(str_replace(',', '.', $putData['price']));
+            $putData['price'] = round($putData['price'],2);
         }
 
         if (isset($putData['toggle_state'])) {

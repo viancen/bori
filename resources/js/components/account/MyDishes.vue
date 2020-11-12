@@ -177,19 +177,22 @@
                                 <tbody v-if="!loadingDishes">
                                 <tr
                                     v-for="(dishItem, dishIndex) in dishes">
-                                    <td @click="opendish(dishItem.id)" style="pointer:pointer"><strong>{{ dishItem.name }}</strong></td>
-                                    <td  style="pointer:pointer" @click="setStatus(dishItem.id)">
-                                        <span  v-if="dishItem.active"><i
+                                    <td @click="opendish(dishItem.id)" style="pointer:pointer"><strong>{{
+                                            dishItem.name
+                                        }}</strong></td>
+                                    <td style="pointer:pointer" @click="setStatus(dishItem.id)">
+                                        <span v-if="dishItem.active"><i
                                             class="fas fa-check text-success"></i></span>
                                         <span v-if="!dishItem.active"><i
                                             class="fas fa-times text-danger"></i></span>
                                     </td>
-                                    <td  style="pointer:pointer" align="right">&euro; {{ dishItem.price }}</td>
+                                    <td style="pointer:pointer" align="right">&euro; {{ dishItem.price }}</td>
                                 </tr>
                                 </tbody>
                             </table>
 
-                            <button type="button" class="btn btn-dark btn-lg" @click="addDish()"> + NIEUW GERECHT TOEVOEGEN
+                            <button type="button" class="btn btn-dark btn-lg" @click="addDish()"> + NIEUW GERECHT
+                                TOEVOEGEN
                             </button>
                         </div>
                     </div>
@@ -307,6 +310,7 @@ export default {
             */
             formData.append('file', this.file);
 
+            let objThis = this;
             let imgnr = this.dishImageNr;
             /*
               Make the request to the POST /single-file URL
@@ -319,7 +323,8 @@ export default {
                     }
                 }
             ).then(function (resp) {
-                document.getElementById('dish-image-' + imgnr).src = resp.data;
+                objThis.dish['image' + imgnr] = resp.data;
+
             }).catch(function (e) {
                 console.log('FAILURE!!', e);
             });
@@ -333,6 +338,7 @@ export default {
              */
             let formData = new FormData();
 
+            let objThis = this;
             /*
                 Add the form data we need to submit
             */
@@ -349,7 +355,8 @@ export default {
                     }
                 }
             ).then(function (resp) {
-                document.getElementById('image-profile').src = resp.data;
+
+                objThis.profile.avatar =  resp.data;
             }).catch(function () {
 
             });
@@ -390,10 +397,10 @@ export default {
         setStatus: function (id) {
             axios.put('/api/dish/' + id, {
                 data: {
-                    'toggle_state':true
+                    'toggle_state': true
                 }
             }).then(response => {
-             this.getdishes();
+                this.getdishes();
             }).catch(e => {
                 console.log("Error... ")
             });

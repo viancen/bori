@@ -2,7 +2,9 @@
     <div v-if="!loading">
         <div class="card flat-border border-dark" v-if="random.dish && showModal == false && showThanks == false">
             <div class="card-header flat-border bg-dark text-white">
-                <img src="/static-images/bori-white.svg" class="card-header-img"> <strong>{{ random.dish.name }}</strong> van
+                <img src="/static-images/bori-white.svg" class="card-header-img"> <strong>{{
+                    random.dish.name
+                }}</strong> van
                 <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
             </div>
 
@@ -25,19 +27,19 @@
                     </div>
                 </div>
 
-                <div class="margin-top-10 display-block">
-                    <h3>
-                        <div class=" margin-top-10 badge  badge-dark" v-if="random.dish.category">
+                <div class="margin-top-10 display-block"><Br />
+                    <ul>
+                        <li v-if="random.dish.category">
                             {{ random.dish.category }}
-                        </div>
-                        <div v-if="random.dish.amount" class="margin-top-10 badge text-lg-center badge-dark">
-                            {{ random.dish.amount }}
-                        </div>
-                        <div v-if="random.dish.price" class=" margin-top-10 badge  badge-success"> &euro;
-                            {{ random.dish.price }}
-                        </div>
+                        </li>
+                        <li v-if="random.dish.price" > &euro;
+                            {{ random.dish.price }} per {{ random.dish.amount }}
+                        </li>
+                        <li v-if="random.dish.timespan" >
+                           <strong> {{ random.dish.timespan }}</strong>  <span v-if="random.dish.delivery_cost">( bezorging: &euro; {{ random.dish.delivery_cost }} )</span>
+                        </li>
 
-                    </h3>
+                    </ul>
                 </div>
             </div>
 
@@ -55,7 +57,7 @@
                 <div class="card-header flat-border bg-success text-white">
                     <img src="/static-images/bori-white.svg" class="card-header-img">
                     Je bestelling is geplaatst: <strong>{{
-                    random.dish.name
+                        random.dish.name
                     }}</strong> van
                     <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
                 </div>
@@ -71,7 +73,7 @@
                 <div class="card-header flat-border bg-dark text-white">
                     <img src="/static-images/bori-white.svg" class="card-header-img">
                     Bestellen: <strong>{{
-                    random.dish.name
+                        random.dish.name
                     }}</strong> van
                     <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
                 </div>
@@ -107,7 +109,7 @@
                             </div>
                         </div>
                     </div>
-                    <hr />
+                    <hr/>
                     <div class="form-row margin-top-10">
                         <div class="col">
                             <div class="input-group ">
@@ -181,7 +183,7 @@
                         </div>
 
                     </div>
-                    <br />
+                    <br/>
                     <div class="form-row margin-top-10">
 
                         <div class="col">
@@ -291,11 +293,17 @@ export default {
 
             axios.get('/api/random-dish').then(({data}) => {
                 //console.log(data)
-                this.items = [
-                    data.dish.image1,
-                    data.dish.image2,
-                    data.dish.image3
-                ];
+                this.items = [];
+                if (data.dish.image1) {
+                    this.items.push(data.dish.image1)
+                }
+                if (data.dish.image2) {
+                    this.items.push(data.dish.image2)
+                }
+                if (data.dish.image3) {
+                    this.items.push(data.dish.image3)
+                }
+
                 data.dish.price = data.dish.price.toFixed(2);
 
                 this.random = data;
