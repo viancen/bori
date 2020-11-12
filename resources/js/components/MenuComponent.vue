@@ -204,7 +204,7 @@
                                     <option value="take-away" selected="selected">Afhalen</option>
 
                                     <option v-if="random.dish.delivery_cost" value="deliver">Bezorgen (+
-                                       &euro; {{ random.dish.delivery_cost }})
+                                        &euro; {{ random.dish.delivery_cost }})
                                     </option>
                                 </select>
                                 <div class="input-group-append">
@@ -256,16 +256,16 @@
                             @expired="onExpired"
                             sitekey="6Ld74skZAAAAAJ7MNZyD2ZvzgIKqRE0RY_5Gnxwb">
                             <button class="btn btn-primary btn-default" style="width: 100%" v-if="!order.recaptcha">
-                                <i class="fas fa-check"></i> Ik woon in amsterdam
+                                <i class="fas fa-check"></i> Ik woon in Amsterdam &raquo;
                             </button>
                         </vue-recaptcha>
 
-                        <a  @click="showModal = false">annuleren
+                        <a @click="showModal = false">annuleren
                         </a>
                     </div>
                     <div class="display-block margin-top-10" v-if="order.recaptcha">
-                        <button @click="placeOrder" class="btn btn-dark btn-default" style="width: 100%">
-                            <i class="fas fa-check"></i> Plaats bestelling
+                        <button @click="placeOrder" class="btn btn-success btn-default" style="width: 100%">
+                            <i class="fas fa-check"></i> Plaats mijn bestelling!
                         </button>
                     </div>
                 </div>
@@ -355,7 +355,7 @@ export default {
         },
         placeOrder() {
 
-            if (this.order.full_name && this.order.email && this.order.amount && this.order.zipcode  && this.order.phone && this.order.housenr && this.order.recaptcha) {
+            if (this.order.full_name && this.order.email && this.order.amount && this.order.zipcode && this.order.phone && this.order.housenr && this.order.recaptcha) {
                 this.error = false;
                 this.sendingorder = true;
 
