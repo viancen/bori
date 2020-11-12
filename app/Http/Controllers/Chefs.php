@@ -60,7 +60,7 @@ class Chefs extends Controller
             $msg = 'Nieuwe bestelling!<Br/><Br/>';
             $msg .= '<strong>' . $dish['name'] . '</strong><br/>';
             foreach ($data as $key => $value) {
-                if (in_array($key, ['csrf', 'token', 'dish_id', 'user_id'])) continue;
+                if (in_array($key, ['csrf', 'token', 'dish_id', 'recaptcha', 'user_id'])) continue;
 
                 $msg .= '<p><strong>' . ucfirst(Str::camel($key)) . '</strong><br/>' . $value . '</p>';
             }
