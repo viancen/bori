@@ -204,8 +204,7 @@
                                     <option value="take-away" selected="selected">Afhalen</option>
 
                                     <option v-if="random.dish.delivery_cost" value="deliver">Bezorgen (+
-                                        {{ random.dish.delivery_cost }},
-                                        {{ random.dish.delivery_cost }})
+                                       &euro; {{ random.dish.delivery_cost }})
                                     </option>
                                 </select>
                                 <div class="input-group-append">
@@ -256,7 +255,7 @@
                             @verify="onVerify"
                             @expired="onExpired"
                             sitekey="6Ld74skZAAAAAJ7MNZyD2ZvzgIKqRE0RY_5Gnxwb">
-                            <button class="btn btn-primary btn-default" style="width: 100%"  v-if="!order.recaptcha">
+                            <button class="btn btn-primary btn-default" style="width: 100%" v-if="!order.recaptcha">
                                 <i class="fas fa-check"></i> Ik woon in amsterdam
                             </button>
                         </vue-recaptcha>
@@ -311,7 +310,7 @@ export default {
                 housenr: null,
                 comment: null,
                 zipcode: null,
-                transfer: null,
+                transfer: 'take-away',
                 recaptcha: null,
                 amount: 1
             },
