@@ -85,6 +85,7 @@
                     <div class="form-row margin-top-10">
 
                         <div class="col">
+
                             <div class="input-group">
                                 <input type="text" class="form-control " required id="full_name" v-model="order.full_name"
                                        placeholder="Je naam *"
@@ -99,6 +100,7 @@
                     <div class="form-row margin-top-10">
 
                         <div class="col">
+
                             <div class="input-group">
                                 <input type="text" class="form-control" required id="email" v-model="order.email"
                                        placeholder="Je e-mail *"
@@ -168,26 +170,11 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="form-row margin-top-10">
-                        <div class="col">
-                            <div class="input-group ">
-
-                                            <textarea class="form-control" id="comment" v-model="order.comment"
-                                                      placeholder="Opmerkingen/allergieen/complimenten ;) etc"
-                                                      name="comments"></textarea>
-                                <div class="input-group-append">
-                                    <div class="input-group-text bg-transparent"><i
-                                        class="fa fa-comment-alt"></i></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <br/>
+<p>&nbsp;</p>
                     <div class="form-row margin-top-10">
 
                         <div class="col">
+                            <label for="portion-amount">Aantal porties</label>
                             <div class="input-group ">
                                 <select class="form-control" id="portion-amount" name="amount" v-model="order.amount"
                                         @change="caculateOrder">
@@ -207,14 +194,16 @@
 
                     <div class="form-row margin-top-10">
 
-
                         <div class="col">
+                            <label for="portion-transfer">{{ random.dish.timespan }} *</label>
                             <div class="input-group ">
                                 <select class="form-control" id="portion-transfer" name="transfer"
                                         v-model="order.transfer"
                                         @change="caculateOrder">
                                     <option value="take-away" selected="selected">Afhalen</option>
-                                    <option value="deliver">Bezorgen (+ 8,-, Enkel Amsterdam)</option>
+
+                                    <option v-if="random.dish.delivery_cost" value="deliver">Bezorgen (+ {{ random.dish.delivery_cost }},
+                                        {{ random.dish.delivery_cost }})</option>
                                 </select>
                                 <div class="input-group-append">
                                     <div class="input-group-text bg-transparent"><i
@@ -223,6 +212,25 @@
                             </div>
                         </div>
                     </div>
+                   
+                    <div class="form-row margin-top-10">
+                        <div class="col">
+                            <label for="comment">Opmerkingen *</label>
+                            <div class="input-group ">
+
+                                            <textarea class="form-control" id="comment" v-model="order.comment"
+                                                      placeholder="Opmerkingen/allergieen/complimenten ;) etc"
+                                                      name="comments"></textarea>
+                                <div class="input-group-append">
+                                    <div class="input-group-text bg-transparent"><i
+                                        class="fa fa-comment-alt"></i></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <p>&nbsp;</p>
+
                     <div class=" margin-top-10 text-right">
                         Totaal:
                         <span class="text-secondary">
@@ -242,7 +250,7 @@
                                     @verify="onVerify"
                                     @expired="onExpired"
                                     sitekey="6Ld74skZAAAAAJ7MNZyD2ZvzgIKqRE0RY_5Gnxwb">
-                                    <button class="btn btn-default" name="grec"><i class="far fa-check"></i> Ik
+                                    <button class="btn btn-dark btn-default" ><i class="fas fa-check"></i> Ik
                                         verklaar dat ik in Amsterdam woon en dat Bori contact met me mag opnemen.
                                     </button>
                                 </vue-recaptcha>
@@ -298,7 +306,7 @@ export default {
                 comment: null,
                 zipcode: null,
                 transfer: null,
-                amount: null
+                amount: 1
             },
             random: null,
             loading: true
