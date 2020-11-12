@@ -58,7 +58,8 @@ class Chefs extends Controller
             $dish = Dishes::find($data['dish_id']);
 
             $msg = 'Nieuwe bestelling!<Br/><Br/>';
-            $msg .= '<strong>' . $dish['name'] . '</strong><br/>';
+            $tot = $data['amount'] * $dish['price'];
+            $msg .= 'Je hebt besteld: <strong>' . $dish['name'] . '</strong> (' . $data['amount'] . ' porties, &euro; ' . $tot . '). Chef ' . $user['name'] . ' neemt snel contact met je op!<br/>';
             foreach ($data as $key => $value) {
                 if (in_array($key, ['csrf', 'token', 'dish_id', 'recaptcha', 'user_id'])) continue;
 
