@@ -23,9 +23,11 @@
     <link href="{{asset('fonts/fa/css/all.min.css')}}" rel="stylesheet">
     <link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet">
 
+    <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer>
+    </script>
     <link rel="icon" href="/static-images/favicon.svg">
 
-    <base href="{{url('/')}}" />
+    <base href="{{url('/')}}"/>
 
 </head>
 <body>

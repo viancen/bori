@@ -20,16 +20,16 @@ class DefaultMail extends Mailable
 
     public function build()
     {
-        $address = 'nieuwenhuizen@gmail.com';
-        $subject = 'This is a demo!';
-        $name = 'Jane Doe';
+        $address = $this->data['order']['email'];
+        $subject = 'Nieuwe bestelling: ' . $this->data['dish']['name'];
+        $name = $this->data['order']['full_name'];
 
         return $this->view('emails.default')
-            ->from($address, $name)
-            ->cc($address, $name)
-            ->bcc($address, $name)
+            ->from('bestellingen@bori.amsterdam', 'Bori')
+            ->to($address, $name)
+            ->bcc('bestellingen@bori.amsterdam', 'Bori Amsterdam')
             ->replyTo($address, $name)
             ->subject($subject)
-            ->with([ 'test_message' => $this->data['message'] ]);
+            ->with(['msg' => $this->data['msg']]);
     }
 }

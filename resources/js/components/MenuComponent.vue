@@ -3,7 +3,7 @@
         <div class="card flat-border border-dark" v-if="random.dish && showModal == false && showThanks == false">
             <div class="card-header flat-border bg-dark text-white">
                 <img src="/static-images/bori-white.svg" class="card-header-img"> <strong>{{
-                    random.dish.name
+                random.dish.name
                 }}</strong> van
                 <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
             </div>
@@ -27,16 +27,18 @@
                     </div>
                 </div>
 
-                <div class="margin-top-10 display-block"><Br />
+                <div class="margin-top-10 display-block"><Br/>
                     <ul>
                         <li v-if="random.dish.category">
                             {{ random.dish.category }}
                         </li>
-                        <li v-if="random.dish.price" > &euro;
+                        <li v-if="random.dish.price"> &euro;
                             {{ random.dish.price }} per {{ random.dish.amount }}
                         </li>
-                        <li v-if="random.dish.timespan" >
-                           <strong> {{ random.dish.timespan }}</strong>  <span v-if="random.dish.delivery_cost">( bezorging: &euro; {{ random.dish.delivery_cost }} )</span>
+                        <li v-if="random.dish.timespan">
+                            <strong> {{ random.dish.timespan }}</strong> <span v-if="random.dish.delivery_cost">( bezorging: &euro; {{
+                                random.dish.delivery_cost
+                            }} )</span>
                         </li>
 
                     </ul>
@@ -57,7 +59,7 @@
                 <div class="card-header flat-border bg-success text-white">
                     <img src="/static-images/bori-white.svg" class="card-header-img">
                     Je bestelling is geplaatst: <strong>{{
-                        random.dish.name
+                    random.dish.name
                     }}</strong> van
                     <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
                 </div>
@@ -73,7 +75,7 @@
                 <div class="card-header flat-border bg-dark text-white">
                     <img src="/static-images/bori-white.svg" class="card-header-img">
                     Bestellen: <strong>{{
-                        random.dish.name
+                    random.dish.name
                     }}</strong> van
                     <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
                 </div>
@@ -83,8 +85,8 @@
                     <div class="form-row margin-top-10">
 
                         <div class="col">
-                            <div class="input-group input-group-lg">
-                                <input type="text" class="form-control " id="full_name" v-model="order.full_name"
+                            <div class="input-group">
+                                <input type="text" class="form-control " required id="full_name" v-model="order.full_name"
                                        placeholder="Je naam *"
                                        name="full_name">
                                 <div class="input-group-append">
@@ -96,10 +98,9 @@
                     </div>
                     <div class="form-row margin-top-10">
 
-
                         <div class="col">
-                            <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" id="email" v-model="order.email"
+                            <div class="input-group">
+                                <input type="text" class="form-control" required id="email" v-model="order.email"
                                        placeholder="Je e-mail *"
                                        name="email">
                                 <div class="input-group-append">
@@ -109,11 +110,11 @@
                             </div>
                         </div>
                     </div>
-                    <hr/>
+                    <p>&nbsp;</p>
                     <div class="form-row margin-top-10">
                         <div class="col">
                             <div class="input-group ">
-                                <input type="text" class="form-control" id="phone" v-model="order.phone"
+                                <input type="text" class="form-control"  required id="phone" v-model="order.phone"
                                        placeholder="Je telefoonnummer *" name="phone">
                                 <div class="input-group-append">
                                     <div class="input-group-text bg-transparent"><i
@@ -206,6 +207,7 @@
 
                     <div class="form-row margin-top-10">
 
+
                         <div class="col">
                             <div class="input-group ">
                                 <select class="form-control" id="portion-transfer" name="transfer"
@@ -231,7 +233,23 @@
                         </span>
 
                     </div>
+                    <div class="form-row margin-top-10">
 
+                        <div class="col">
+                            <div class="input-group ">
+
+                                <vue-recaptcha
+                                    @verify="onVerify"
+                                    @expired="onExpired"
+                                    sitekey="6Ld74skZAAAAAJ7MNZyD2ZvzgIKqRE0RY_5Gnxwb">
+                                    <button class="btn btn-default" name="grec"><i class="far fa-check"></i> Ik
+                                        verklaar dat ik in Amsterdam woon en dat Bori contact met me mag opnemen.
+                                    </button>
+                                </vue-recaptcha>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer text-center">
                     <button type="button" class="btn btn-secondary" @click="showModal = false">Sluiten
@@ -250,7 +268,7 @@
 
 import CoolLightBox from 'vue-cool-lightbox'
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
-
+import VueRecaptcha from 'vue-recaptcha';
 
 // register modal component
 
@@ -321,16 +339,24 @@ export default {
         },
         placeOrder() {
 
+
             axios.post('/api/place-order', this.order).then(({data}) => {
 
                 this.showModal = false;
                 this.showThanks = true;
 
             }).catch((err) => console.error(err));
+        },
+        onVerify(dara) {
+            this.order.recaptcha = (dara);
+        },
+        onExpired(dara) {
+            console.log(dara);
         }
     },
     components: {
-        CoolLightBox
+        CoolLightBox,
+        VueRecaptcha
     },
     mounted() {
         this.read();

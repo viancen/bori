@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\DefaultMail;
 use App\Models\Dishes;
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 
@@ -37,10 +41,40 @@ class Chefs extends Controller
 
         $data = request()->all();
 
-        $user = User::find($data['user_id']);
-        $dish = Dishes::find($data['dish_id']);
+        $client = new Client();
+        $response = $client->post('https://www.google.com/recaptcha/api/siteverify',
+            [
+                'form_params' => [
+                    'secret' => env('RECAPTCHA_SECRET_KEY', false),
+                    'remoteip' => request()->getClientIp(),
+                    'response' => $data['recaptcha']
+                ]
+            ]
+        );
+        $body = json_decode((string)$response->getBody());
+        if ($body->success) {
 
-        return $data;
+            $user = User::find($data['user_id']);
+            $dish = Dishes::find($data['dish_id']);
+
+            $msg = 'Nieuwe bestelling!<Br/><Br/>';
+            $msg .= '<strong>' . $dish['name'] . '</strong><br/>';
+            foreach ($data as $key => $value) {
+                if (in_array($key, ['csrf', 'token', 'dish_id', 'user_id'])) continue;
+
+                $msg .= '<p><strong>' . ucfirst(Str::camel($key)) . '</strong><br/>' . $value . '</p>';
+            }
+            $dataMail = [
+                'order' => $data,
+                'dish' => $dish,
+                'msg' => $msg
+            ];
+            Mail::send(new DefaultMail($dataMail));
+            return [true];
+        } else {
+            return [false];
+        }
+
     }
 
     /**
@@ -168,7 +202,7 @@ class Chefs extends Controller
 
         if (isset($putData['price'])) {
             $putData['price'] = trim(str_replace(',', '.', $putData['price']));
-            $putData['price'] = round($putData['price'],2);
+            $putData['price'] = round($putData['price'], 2);
         }
 
         if (isset($putData['toggle_state'])) {
