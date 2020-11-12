@@ -3,7 +3,7 @@
         <div class="card flat-border border-dark" v-if="random.dish && showModal == false && showThanks == false">
             <div class="card-header flat-border bg-dark text-white">
                 <img src="/static-images/bori-white.svg" class="card-header-img"> <strong>{{
-                random.dish.name
+                    random.dish.name
                 }}</strong> van
                 <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
             </div>
@@ -59,7 +59,7 @@
                 <div class="card-header flat-border bg-success text-white">
                     <img src="/static-images/bori-white.svg" class="card-header-img">
                     Je bestelling is geplaatst: <strong>{{
-                    random.dish.name
+                        random.dish.name
                     }}</strong> van
                     <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
                 </div>
@@ -75,7 +75,7 @@
                 <div class="card-header flat-border bg-dark text-white">
                     <img src="/static-images/bori-white.svg" class="card-header-img">
                     Bestellen: <strong>{{
-                    random.dish.name
+                        random.dish.name
                     }}</strong> van
                     <img :src="random.avatar" class="card-header-avatar-img"/> <strong>{{ random.name }}</strong>
                 </div>
@@ -87,7 +87,8 @@
                         <div class="col">
 
                             <div class="input-group">
-                                <input type="text" class="form-control " required id="full_name" v-model="order.full_name"
+                                <input type="text" class="form-control " required id="full_name"
+                                       v-model="order.full_name"
                                        placeholder="Je naam *"
                                        name="full_name">
                                 <div class="input-group-append">
@@ -116,7 +117,7 @@
                     <div class="form-row margin-top-10">
                         <div class="col">
                             <div class="input-group ">
-                                <input type="text" class="form-control"  required id="phone" v-model="order.phone"
+                                <input type="text" class="form-control" required id="phone" v-model="order.phone"
                                        placeholder="Je telefoonnummer *" name="phone">
                                 <div class="input-group-append">
                                     <div class="input-group-text bg-transparent"><i
@@ -170,7 +171,7 @@
                             </div>
                         </div>
                     </div>
-<p>&nbsp;</p>
+                    <p>&nbsp;</p>
                     <div class="form-row margin-top-10">
 
                         <div class="col">
@@ -202,8 +203,10 @@
                                         @change="caculateOrder">
                                     <option value="take-away" selected="selected">Afhalen</option>
 
-                                    <option v-if="random.dish.delivery_cost" value="deliver">Bezorgen (+ {{ random.dish.delivery_cost }},
-                                        {{ random.dish.delivery_cost }})</option>
+                                    <option v-if="random.dish.delivery_cost" value="deliver">Bezorgen (+
+                                        {{ random.dish.delivery_cost }},
+                                        {{ random.dish.delivery_cost }})
+                                    </option>
                                 </select>
                                 <div class="input-group-append">
                                     <div class="input-group-text bg-transparent"><i
@@ -212,15 +215,14 @@
                             </div>
                         </div>
                     </div>
-                   
+
                     <div class="form-row margin-top-10">
                         <div class="col">
                             <label for="comment">Opmerkingen *</label>
                             <div class="input-group ">
-
-                                            <textarea class="form-control" id="comment" v-model="order.comment"
-                                                      placeholder="Opmerkingen/allergieen/complimenten ;) etc"
-                                                      name="comments"></textarea>
+                                <textarea class="form-control" id="comment" v-model="order.comment"
+                                          placeholder="Opmerkingen/allergieen/complimenten ;) etc"
+                                          name="comments"></textarea>
                                 <div class="input-group-append">
                                     <div class="input-group-text bg-transparent"><i
                                         class="fa fa-comment-alt"></i></div>
@@ -241,28 +243,32 @@
                         </span>
 
                     </div>
-                    <div class="form-row margin-top-10">
-
-                        <div class="col">
-                            <div class="input-group ">
-
-                                <vue-recaptcha
-                                    @verify="onVerify"
-                                    @expired="onExpired"
-                                    sitekey="6Ld74skZAAAAAJ7MNZyD2ZvzgIKqRE0RY_5Gnxwb">
-                                    <button class="btn btn-dark btn-default" ><i class="fas fa-check"></i> Ik
-                                        verklaar dat ik in Amsterdam woon en dat Bori contact met me mag opnemen.
-                                    </button>
-                                </vue-recaptcha>
-
-                            </div>
-                        </div>
+                    <div v-if="error" class="display-block">
+                        <div class="alert alert-danger">Vul a.u.b. alle verplichte velden in.</div>
                     </div>
-                </div>
-                <div class="card-footer text-center">
-                    <button type="button" class="btn btn-secondary" @click="showModal = false">Sluiten
-                    </button>
-                    <button type="button" @click="placeOrder" class="btn btn-primary">Bestellen</button>
+                    <div v-if="sendingorder" class="display-block">
+                        <div class="alert alert-success">Een moment, je bestelling wordt geplaatst.</div>
+                    </div>
+                    <div class="display-block margin-top-10">
+
+
+                        <vue-recaptcha
+                            @verify="onVerify"
+                            @expired="onExpired"
+                            sitekey="6Ld74skZAAAAAJ7MNZyD2ZvzgIKqRE0RY_5Gnxwb">
+                            <button class="btn btn-primary btn-default" style="width: 100%"  v-if="!order.recaptcha">
+                                <i class="fas fa-check"></i> Ik woon in amsterdam
+                            </button>
+                        </vue-recaptcha>
+
+                        <a  @click="showModal = false">annuleren
+                        </a>
+                    </div>
+                    <div class="display-block margin-top-10" v-if="order.recaptcha">
+                        <button @click="placeOrder" class="btn btn-dark btn-default" style="width: 100%">
+                            <i class="fas fa-check"></i> Plaats bestelling
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -306,9 +312,12 @@ export default {
                 comment: null,
                 zipcode: null,
                 transfer: null,
+                recaptcha: null,
                 amount: 1
             },
             random: null,
+            error: false,
+            sendingorder: false,
             loading: true
         }
     },
@@ -347,13 +356,21 @@ export default {
         },
         placeOrder() {
 
+            if (this.order.full_name && this.order.email && this.order.amount && this.order.zipcode  && this.order.phone && this.order.housenr && this.order.recaptcha) {
+                this.error = false;
+                this.sendingorder = true;
 
-            axios.post('/api/place-order', this.order).then(({data}) => {
 
-                this.showModal = false;
-                this.showThanks = true;
+                axios.post('/api/place-order', this.order).then(({data}) => {
 
-            }).catch((err) => console.error(err));
+                    this.showModal = false;
+                    this.showThanks = true;
+
+                }).catch((err) => console.error(err));
+            } else {
+                console.log(this.order);
+                this.error = true;
+            }
         },
         onVerify(dara) {
             this.order.recaptcha = (dara);
