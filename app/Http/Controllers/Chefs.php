@@ -213,7 +213,9 @@ class Chefs extends Controller
                 $dish->active = false;
                 $user->active_dish_id = null;
             } else {
-                Dishes::where('user_id', $user->id)->update(['active' => false]);
+                Dishes::where('user_id', $user->id)
+                    ->update(['active' => false]);
+
                 $dish->active = true;
                 $user->active_dish_id = $dish->id;
             }
@@ -347,7 +349,7 @@ class Chefs extends Controller
         $image = $hash . "jpg";
 
         // Put image to storage
-        $save = Storage::put("images/{$dir}/{$fileNameToStore}", $resize->__toString());
+        $save = file_put_contents(public_path("images/{$dir}/{$fileNameToStore}"), $resize->__toString());
 
         if ($save) {
             return $image;

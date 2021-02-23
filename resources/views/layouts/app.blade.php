@@ -74,13 +74,6 @@
                                 <i class="fas fa-fw fa-sign-in-alt"></i>
                                 {{ __('Inloggen') }}</a>
                         </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">
-                                    <i class="fas fa-fw fa-user-edit"></i>
-                                    {{ __('Registreren') }}</a>
-                            </li>
-                        @endif
 
                     @else
                         <li class="nav-item dropdown">

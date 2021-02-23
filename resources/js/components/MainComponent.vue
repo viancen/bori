@@ -6,8 +6,8 @@
                 <chefs-component></chefs-component>
             </div>
             <div class="col-md-4">
+                <tshirt-component></tshirt-component>
                 <about-widget></about-widget>
-               <!--<tshirt-component></tshirt-component>-->
             </div>
 
 
