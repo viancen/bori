@@ -20,6 +20,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
         "melihovv/laravel-shopping-cart": "^7.0",
+        "s-ichikawa/laravel-sendgrid-driver": "^3.0",
         "socialiteproviders/facebook": "^1.0",
         "socialiteproviders/instagram": "^3.0",
         "vinkla/shield": "^6.0"
