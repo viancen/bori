@@ -111,7 +111,9 @@
 
                 <!-- START CENTERED WHITE CONTAINER -->
                 <span class="preheader"
-                      style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">   </span>
+                      style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">
+                Bori.Amsterdam
+                </span>
 
                 <table class="main"
                        style="background:white;border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; ">
@@ -120,7 +122,8 @@
                         <td class="wrapper"
                             style="padding:20px;padding-top:30px;text-align: center;">
 
-                            <img align="right" alt="" src="https://bijna.bori.amsterdam/static-images/bori.svg" width="150" style="max-width:100px; max-height:96px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" >
+                            <img align="right" alt="" src="https://bori.amsterdam/static-images/bori.svg" width="150"
+                                 style="max-width:100px; max-height:96px; padding-bottom: 0; display: inline !important; vertical-align: bottom;">
 
                         </td>
                     </tr>
@@ -135,8 +138,6 @@
                                 <tr>
                                     <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
                                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-
-
                                         <p>{!! $msg !!}</p>
                                         <br><br>
 
