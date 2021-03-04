@@ -348,8 +348,12 @@ class Chefs extends Controller
         // Prepare qualified image name
         $image = $hash . "jpg";
 
+        if (!is_dir(storage_path("app/public/{$dir}"))) {
+            mkdir(storage_path("app/public/{$dir}"));
+        }
+        
         // Put image to storage
-        $save = file_put_contents(public_path("images/{$dir}/{$fileNameToStore}"), $resize->__toString());
+        $save = file_put_contents(storage_path("app/public/{$dir}/{$fileNameToStore}"), $resize->__toString());
 
         if ($save) {
             return $image;
