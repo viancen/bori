@@ -351,7 +351,7 @@ class Chefs extends Controller
         if (!is_dir(storage_path("app/public/{$dir}"))) {
             mkdir(storage_path("app/public/{$dir}"));
         }
-        
+
         // Put image to storage
         $save = file_put_contents(storage_path("app/public/{$dir}/{$fileNameToStore}"), $resize->__toString());
 
