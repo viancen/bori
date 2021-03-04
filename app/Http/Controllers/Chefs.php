@@ -280,10 +280,10 @@ class Chefs extends Controller
         $image = $this->resizeImage($file, $fileNameToStore, 'dishes');
 
         $imagerec = 'image' . $imagenr;
-        $dish->{$imagerec} = asset('images/dishes/' . $fileNameToStore);
+        $dish->{$imagerec} = asset('dishes/' . $fileNameToStore);
         $dish->save();
 
-        return asset('images/dishes/' . $fileNameToStore);
+        return asset('dishes/' . $fileNameToStore);
 
     }
 
@@ -320,10 +320,10 @@ class Chefs extends Controller
         // Refer image to method resizeImage
         $image = $this->resizeImage($file, $fileNameToStore, 'chefs');
 
-        $user->avatar = asset('images/chefs/' . $fileNameToStore);
+        $user->avatar = asset('chefs/' . $fileNameToStore);
         $user->save();
 
-        return asset('images/chefs/' . $fileNameToStore);
+        return asset('chefs/' . $fileNameToStore);
 
     }
 
