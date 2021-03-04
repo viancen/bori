@@ -114,6 +114,7 @@
                                          class="rounded mx-auto d-block max-width-150 max-height-150">
                                 </div>
                             </div>
+                            <div><br/></div>
                             <div class="row">
                                 <div class="col">
 
@@ -129,7 +130,7 @@
                                          class="rounded mx-auto d-block max-width-150 max-height-150">
                                 </div>
                             </div>
-
+                            <div><br/></div>
 
                             <div class="row">
                                 <div class="col">
@@ -144,6 +145,7 @@
                                          class="rounded mx-auto d-block max-width-150 max-height-150">
                                 </div>
                             </div>
+                            <div><br/></div>
                             <div class="row">
                                 <div class="col">
                                     <div class="input-group">
@@ -356,7 +358,7 @@ export default {
                 }
             ).then(function (resp) {
 
-                objThis.profile.avatar =  resp.data;
+                objThis.profile.avatar = resp.data;
             }).catch(function () {
 
             });
