@@ -87,6 +87,8 @@ class Chefs extends Controller
     {
         //
         $dis = Dishes::select()
+            ->whereNotNull('name')
+            ->whereNotNull('description')
             ->where('active', true)
             ->inRandomOrder()
             ->first();
