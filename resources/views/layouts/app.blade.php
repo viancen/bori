@@ -69,7 +69,6 @@
                     @guest
 
                         <li class="nav-item">
-
                             <a class="nav-link" href="{{ route('login') }}">
                                 <i class="fas fa-fw fa-sign-in-alt"></i>
                                 {{ __('Inloggen') }}</a>
@@ -78,7 +77,7 @@
                         <li class="nav-item">
 
                             <a class="nav-link" href="{{ route('register') }}">
-                                <i class="fas fa-fw fa-pencil"></i>
+                                <i class="fas fa-fw fa-pen"></i>
                                 {{ __('Registreren') }}</a>
                         </li>
 
